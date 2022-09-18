@@ -80,7 +80,7 @@ public class Pather : MonoBehaviour
     void AdjustDistance()
     {
         //check to see if the new position of the train has changed from before
-        newDistanceTravelled = Mathf.Round(pathCreator.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition)));
+        newDistanceTravelled = Mathf.Round(pathCreator.path.GetClosestDistanceAlongPath(transform.position));
         if(!(oldDistanceTravelled == newDistanceTravelled)){
             //update the total distance travelled
             
