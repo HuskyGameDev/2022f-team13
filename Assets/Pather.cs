@@ -16,12 +16,13 @@ public class Pather : MonoBehaviour
     float oldDistanceTravelled;
     public float smooth = 5.0f;
     bool Held = false;
-    public Text distanceText;
+    public GameManager gm;
+    
     Vector2 v2;
     // Start is called before the first frame update
     void Start()
     {
-        distanceText.text = "Distance Traveled: 0";
+        
         oldDistanceTravelled = 0;
         totalDistanceTravelled = 0;
         if (pathCreator != null)
@@ -89,6 +90,6 @@ public class Pather : MonoBehaviour
             oldDistanceTravelled = newDistanceTravelled;
         }
         //display new total distance travelled
-        distanceText.text = "Distance Traveled: " + totalDistanceTravelled;
+        gm.ChangeText(totalDistanceTravelled);
     }
 }
