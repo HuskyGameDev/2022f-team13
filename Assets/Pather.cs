@@ -57,7 +57,8 @@ public class Pather : MonoBehaviour
                 //The goal is a to build a basic p loop that will move the train to the same designated point at a reasonable speed.
                 //distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition))
 
-                distanceTravelled += Mathf.Clamp((pathCreator.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition)) - distanceTravelled) * smooth, -smooth, smooth) * Time.deltaTime;
+                //This looks scary because I put it on one line. It is basically: (closest_mouse_position - train_position) * smooth, clamped between (-speed, speed). Otherwise known as a p-loop
+                distanceTravelled += Mathf.Clamp((pathCreator.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition)) - distanceTravelled) * smooth, -speed, speed) * Time.deltaTime;
                 AdjustDistance();
             }
 
