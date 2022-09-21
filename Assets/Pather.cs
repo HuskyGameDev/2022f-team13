@@ -15,6 +15,7 @@ public class Pather : MonoBehaviour
     float newDistanceTravelled;
     float oldDistanceTravelled;
     public float smooth = 5.0f;
+    public float train_speed = 0.0f;
     bool Held = false;
     public GameManager gm;
     
@@ -58,8 +59,11 @@ public class Pather : MonoBehaviour
                 //distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition))
 
                 //This looks scary because I put it on one line. It is basically: (closest_mouse_position - train_position) * smooth, clamped between (-speed, speed). Otherwise known as a p-loop
-                distanceTravelled += Mathf.Clamp((pathCreator.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition)) - distanceTravelled) * smooth, -speed, speed) * Time.deltaTime;
+                train_speed = Mathf.Clamp((pathCreator.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition)) - distanceTravelled) * smooth, -speed, speed);
+                distanceTravelled += train_speed * Time.deltaTime;
                 AdjustDistance();
+
+
             }
 
             if(!Input.GetMouseButton(0))
