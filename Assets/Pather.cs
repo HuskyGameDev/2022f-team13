@@ -87,7 +87,7 @@ public class Pather : MonoBehaviour
     {
         //check to see if the new position of the train has changed from before
         newDistanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
-        if(Mathf.Abs(oldDistanceTravelled - newDistanceTravelled) > 1)
+        if(Mathf.Abs(oldDistanceTravelled - newDistanceTravelled) >= 1)
         {
             //update the total distance travelled
             totalDistanceTravelled += Mathf.Round(Mathf.Abs(oldDistanceTravelled - newDistanceTravelled));
