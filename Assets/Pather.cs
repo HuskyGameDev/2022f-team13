@@ -86,11 +86,11 @@ public class Pather : MonoBehaviour
     void AdjustDistance()
     {
         //check to see if the new position of the train has changed from before
-        newDistanceTravelled = Mathf.Round(pathCreator.path.GetClosestDistanceAlongPath(transform.position));
-        if(!(oldDistanceTravelled == newDistanceTravelled)){
+        newDistanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
+        if(Mathf.Abs(oldDistanceTravelled - newDistanceTravelled) > 1)
+        {
             //update the total distance travelled
-            
-            totalDistanceTravelled += Mathf.Abs(oldDistanceTravelled - newDistanceTravelled);
+            totalDistanceTravelled += Mathf.Round(Mathf.Abs(oldDistanceTravelled - newDistanceTravelled));
             //make sure old distance travelled is updated
             oldDistanceTravelled = newDistanceTravelled;
         }
