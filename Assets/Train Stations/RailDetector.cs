@@ -19,7 +19,7 @@ public class RailDetector : MonoBehaviour
     //When something enters the proximity check, it checks for the right tag
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Gold")
+        if (collision.tag == railType)
         {
             correctRail = true;
             Debug.Log("2D object with tag '" + railType + "': " + collision + " detected");
