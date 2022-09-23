@@ -97,4 +97,11 @@ public class Pather : MonoBehaviour
         //display new total distance travelled
         gm.ChangeText(totalDistanceTravelled);
     }
+    public void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Coal"))
+        {
+            //set the car to be attached to the train
+        }
+    }
 }
