@@ -12,6 +12,15 @@ EditorBuildSettings:
     path: Assets/Scenes/Prototype.unity
     guid: 96d1dd9a281643a48a6f35dedc006b99
   - enabled: 1
-    path: Assets/Scenes/Title Screem.unity
+    path: Assets/Scenes/Title Screen.unity
     guid: c399fa34b954a944ea9985421c0839a5
+  - enabled: 1
+    path: Assets/Scenes/Level Selection.unity
+    guid: bd01a63fe0ce61546b2ab3e690232a9a
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 5bd8b43f46f32c94c95dc1c00605d037
+  - enabled: 1
+    path: Assets/Scenes/Level Editor.unity
+    guid: 60c4bf7d62f8f5b47b45703aa93ba911
   m_configObjects: {}
