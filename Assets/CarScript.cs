@@ -12,7 +12,6 @@ public class CarScript : MonoBehaviour
     public float currentPosition;
     public float smooth = 5.0f;
     public bool attached;
-    public GameObject train;
     public GameManager gm;
 
     Vector2 v2;
@@ -36,6 +35,7 @@ public class CarScript : MonoBehaviour
             
             if (attached)
             {
+                Debug.Log("Train follow");
                 //follow the train cj
             }
             //Check if mouse is clicking on the car when attached, detach from train if it is

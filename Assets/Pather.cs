@@ -23,7 +23,6 @@ public class Pather : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
         oldDistanceTravelled = 0;
         totalDistanceTravelled = 0;
         if (pathCreator != null)
@@ -82,12 +81,12 @@ public class Pather : MonoBehaviour
     {
         distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
     }
-    
+
     void AdjustDistance()
     {
         //check to see if the new position of the train has changed from before
         newDistanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
-        if(Mathf.Abs(oldDistanceTravelled - newDistanceTravelled) >= 1)
+        if (Mathf.Abs(oldDistanceTravelled - newDistanceTravelled) >= 1)
         {
             //update the total distance travelled
             totalDistanceTravelled += Mathf.Round(Mathf.Abs(oldDistanceTravelled - newDistanceTravelled));
@@ -97,11 +96,11 @@ public class Pather : MonoBehaviour
         //display new total distance travelled
         gm.ChangeText(totalDistanceTravelled);
     }
-    public void OnTriggerEnter2D(Collider2D other)
+    public void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Coal"))
+        if (other.gameObject.CompareTag("Coal"))
         {
-            //set the car to be attached to the train
+            Debug.Log("God it's finally over!");
         }
     }
 }
