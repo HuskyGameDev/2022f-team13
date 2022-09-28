@@ -10,8 +10,10 @@ public class CarScript : MonoBehaviour
     public Rigidbody2D rb;
     public float speed = 10f;
     public float currentPosition;
+    public float trainPosition;
     public float smooth = 5.0f;
     public bool attached;
+    public float car_speed = 0.0f;
     public GameManager gm;
 
     Vector2 v2;
@@ -35,11 +37,10 @@ public class CarScript : MonoBehaviour
             
             if (attached)
             {
-                Debug.Log("Train follow");
-                //follow the train cj
+                currentPosition = trainPosition - 1;
             }
             //Check if mouse is clicking on the car when attached, detach from train if it is
-            if ((Input.GetMouseButton(0)) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 1) && (attached))
+            if ((Input.GetMouseButton(0)) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 1))
             {
                 attached = false;
             }

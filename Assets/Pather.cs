@@ -100,7 +100,8 @@ public class Pather : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Coal"))
         {
-            Debug.Log("God it's finally over!");
+            other.gameObject.GetComponent<CarScript>().attached = true;
+            other.gameObject.GetComponent<CarScript>().trainPosition = distanceTravelled;
         }
     }
 }
