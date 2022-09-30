@@ -7,6 +7,7 @@ TagManager:
   - The manager
   - Coal
   - Gold
+  - TrainStation
   layers:
   - Default
   - TransparentFX

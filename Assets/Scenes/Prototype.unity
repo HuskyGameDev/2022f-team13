@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 261531147}
   m_Layer: 0
   m_Name: Placeholder Building
-  m_TagString: Untagged
+  m_TagString: TrainStation
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -394,8 +394,10 @@ MonoBehaviour:
   rb: {fileID: 0}
   speed: 10
   currentPosition: 0
+  trainPosition: 0
   smooth: 5
   attached: 0
+  car_speed: 0
   gm: {fileID: 2027678641}
 --- !u!65 &613686049
 BoxCollider:
