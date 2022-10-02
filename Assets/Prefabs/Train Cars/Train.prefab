@@ -104,6 +104,11 @@ MonoBehaviour:
   endOfPathInstruction: 0
   rb: {fileID: 3026061268093032162}
   speed: 5
+  distanceTravelled: 0
+  totalDistanceTravelled: 0
+  smooth: 5
+  train_speed: 0
+  gm: {fileID: 0}
 --- !u!50 &3026061268093032162
 Rigidbody2D:
   serializedVersion: 4
@@ -167,3 +172,8 @@ MonoBehaviour:
   endOfPathInstruction: 0
   rb: {fileID: 0}
   speed: 5
+  distanceTravelled: 0
+  totalDistanceTravelled: 0
+  smooth: 5
+  train_speed: 0
+  gm: {fileID: 0}

@@ -96,12 +96,13 @@ public class Pather : MonoBehaviour
         //display new total distance travelled
         gm.ChangeText(totalDistanceTravelled);
     }
-    public void OnTriggerEnter(Collider other)
+    void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Coal"))
         {
             other.gameObject.GetComponent<CarScript>().attached = true;
-            other.gameObject.GetComponent<CarScript>().trainPosition = distanceTravelled;
+            other.gameObject.GetComponent<CarScript>().currentPosition = distanceTravelled - 1;
+            other.gameObject.GetComponent<CarScript>().car_speed = train_speed;
         }
     }
 }
