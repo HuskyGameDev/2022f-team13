@@ -16,7 +16,7 @@ public class Pather : MonoBehaviour
     float oldDistanceTravelled;
     public float smooth = 5.0f;
     public float train_speed = 0.0f;
-    bool Held = false;
+    public bool Held { get; private set; } = false;
     public GameManager gm;
     
     Vector2 v2;
@@ -101,8 +101,8 @@ public class Pather : MonoBehaviour
         if (other.gameObject.CompareTag("Coal"))
         {
             other.gameObject.GetComponent<CarScript>().attached = true;
-            other.gameObject.GetComponent<CarScript>().currentPosition = distanceTravelled - 1;
-            other.gameObject.GetComponent<CarScript>().car_speed = train_speed;
+            other.gameObject.GetComponent<CarScript>().currentPosition = distanceTravelled - 2;
+            other.gameObject.GetComponent<CarScript>().trainRef = this.gameObject;
         }
     }
 }

@@ -15,7 +15,7 @@ public class CarScript : MonoBehaviour
     public bool attached;
     public float car_speed = 0.0f;
     public GameManager gm;
-    public GameObject train;
+    public GameObject trainRef;
 
     Vector2 v2;
     // Start is called before the first frame update
@@ -38,12 +38,12 @@ public class CarScript : MonoBehaviour
             
             if (attached)
             {
-                currentPosition += car_speed * Time.deltaTime;
+                currentPosition += trainRef.GetComponent<Pather>().train_speed * Time.deltaTime;
             }
             //Check if mouse is clicking on the car when attached, detach from train if it is
-            if ((Input.GetMouseButton(0)) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 1))
+            if ((Input.GetMouseButton(0)) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5) && !trainRef.GetComponent<Pather>().Held)
             {
-                attached = false;
+               attached = false;
             }
             transform.position = pathCreator.path.GetPointAtDistance(currentPosition);
             transform.rotation = pathCreator.path.GetRotationAtDistance(currentPosition);
