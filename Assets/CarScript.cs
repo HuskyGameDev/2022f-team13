@@ -41,9 +41,10 @@ public class CarScript : MonoBehaviour
                 currentPosition += trainRef.GetComponent<Pather>().train_speed * Time.deltaTime;
             }
             //Check if mouse is clicking on the car when attached, detach from train if it is
-            if ((Input.GetMouseButton(0)) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5) && !trainRef.GetComponent<Pather>().Held)
+            if ((!Input.GetMouseButton(0)) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5) && !trainRef.GetComponent<Pather>().Held)
             {
                attached = false;
+               currentPosition += 0 * Time.deltaTime;
             }
             transform.position = pathCreator.path.GetPointAtDistance(currentPosition);
             transform.rotation = pathCreator.path.GetRotationAtDistance(currentPosition);
