@@ -8,6 +8,7 @@ public class CarScript : MonoBehaviour
 {
     public PathCreator pathCreator;
     public Rigidbody2D rb;
+    public EndOfPathInstruction endOfPathInstruction;
     public float speed = 10f;
     public float currentPosition;
     public float trainPosition;
@@ -38,10 +39,13 @@ public class CarScript : MonoBehaviour
             
             if (attached)
             {
-                currentPosition = trainRef.GetComponent<Pather>().distanceTravelled - 1.5f;
-                if(currentPosition < 0.05)
+                if (trainRef.GetComponent<Pather>().Held)
                 {
-                    currentPosition = 0;
+                    currentPosition += trainRef.GetComponent<Pather>().train_speed * Time.deltaTime;
+                }
+                else
+                {
+                    currentPosition += 0 * Time.deltaTime;
                 }
             }
             //Check if mouse is clicking on the car when attached, detach from train if it is

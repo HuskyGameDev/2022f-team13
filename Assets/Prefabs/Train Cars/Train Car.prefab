@@ -113,6 +113,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pathCreator: {fileID: 0}
   rb: {fileID: 0}
+  endOfPathInstruction: 2
   speed: 10
   currentPosition: 0
   trainPosition: 0
@@ -120,7 +121,7 @@ MonoBehaviour:
   attached: 0
   car_speed: 0
   gm: {fileID: 0}
-  train: {fileID: 0}
+  trainRef: {fileID: 0}
 --- !u!54 &1946009591946543667
 Rigidbody:
   m_ObjectHideFlags: 0
