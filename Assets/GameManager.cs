@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+
+
 public class GameManager : MonoBehaviour
 {
     public Text distanceText;
@@ -15,10 +18,12 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
     public void ChangeText(float addDistance)
     {
         distanceText.text = "Distance Traveled: " + addDistance;
     }
 }
+
+

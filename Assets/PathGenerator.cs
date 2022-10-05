@@ -1,4 +1,5 @@
 using UnityEngine;
+using PathCreation;
 
 namespace PathCreation.Examples
 {
@@ -36,13 +37,13 @@ namespace PathCreation.Examples
                 {
                     foreach(Transform t in path.waypoints)
                     {
-                        if (this.waypoints[0].position.Equals(t.position))
+                        if (this.waypoints[0].position.Equals(t.position) && !GameObject.ReferenceEquals(t, this))
                         {
                             //Find the "FIRST" point connection
                             path_s = path;
                         }
 
-                        if (this.waypoints[this.waypoints.Length - 1].position.Equals(t.position))
+                        if (this.waypoints[this.waypoints.Length - 1].position.Equals(t.position) && !GameObject.ReferenceEquals(t, this))
                         {
                             //Find the "FIRST" point connection
                             path_f = path;

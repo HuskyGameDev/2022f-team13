@@ -8,6 +8,7 @@ TagManager:
   - Coal
   - Gold
   - TrainStation
+  - Path
   layers:
   - Default
   - TransparentFX

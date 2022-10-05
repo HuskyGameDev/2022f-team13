@@ -38,7 +38,7 @@ public class GameManage : MonoBehaviour
         numCorrectRails = numCorrectRails + i;
         if (numCorrectRails == numStations)
         {
-            Gotolevelselect();
+            //Gotolevelselect();
         }
     }
 
