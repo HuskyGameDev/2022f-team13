@@ -17,14 +17,13 @@ public class CarScript : MonoBehaviour
     public float car_speed = 0.0f;
     public GameManager gm;
     public GameObject trainRef;
-    public GameObject newTrainRef;
 
     Vector2 v2;
     // Start is called before the first frame update
     void Start()
     {
         attached = false;
-        currentPosition = 2;
+        currentPosition = 5;
         if (pathCreator != null)
         {
             // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
@@ -40,7 +39,6 @@ public class CarScript : MonoBehaviour
             
             if (attached)
             {
-
                 if (trainRef.GetComponent<Pather>().Held)
                 {
                     currentPosition += trainRef.GetComponent<Pather>().train_speed * Time.deltaTime;
