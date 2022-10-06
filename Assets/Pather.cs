@@ -21,6 +21,7 @@ public class Pather : MonoBehaviour
     public GameManager gm;
     public PathGenerator path_s;
     public PathGenerator path_f;
+    private bool switched;
 
     private GameObject track;
     
@@ -39,6 +40,7 @@ public class Pather : MonoBehaviour
             
         }
         Held = false;
+        switched = false;
     }
 
     // Update is called once per frame
@@ -75,28 +77,56 @@ public class Pather : MonoBehaviour
             {
                 Held = false;
             }
-            transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-            transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+
+            
 
 
             Debug.Log(transform.position + " " + pathCreator.path.GetPointAtTime(0) + " " + pathCreator.path.GetPointAtTime(0.9999999f));
             //Check if time to switch
-            if (Vector3.Distance(transform.position, pathCreator.path.GetPointAtTime(0)) < 0.001 && path_s != null)
+            if(switched)
             {
-                //Switch to First Path
-                track = path_s.gameObject;
-                pathCreator = track.GetComponent<PathCreator>();
-
+                //Something needs to happen here that moves the train out of the range that let's it teleport
+                transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+                transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+                if (Vector3.Distance(transform.position, pathCreator.path.GetPointAtTime(0)) > 0.1 && Vector3.Distance(transform.position, pathCreator.path.GetPointAtTime(0.9999999f)) > 0.1)
+                {
+                    switched = false;
+                }
                 
-                setPathEnds();
-
-            } else if (Vector3.Distance(transform.position, pathCreator.path.GetPointAtTime(0.9999999f)) < 0.001 && path_f != null)
+            } else
             {
-                //Switch to Second Path
-                track = path_f.gameObject;
-                pathCreator = track.GetComponent<PathCreator>();
-                setPathEnds();
+                if (Vector3.Distance(transform.position, pathCreator.path.GetPointAtTime(0)) < 0.1 && path_s != null)
+                {
+                    //Switch to First Path
+                    track = path_s.gameObject;
+                    pathCreator = track.GetComponent<PathCreator>();
+
+                    transform.position = pathCreator.path.GetPointAtDistance(pathCreator.path.GetClosestDistanceAlongPath(pathCreator.path.GetPointAtTime(0)), endOfPathInstruction);
+                    transform.rotation = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(pathCreator.path.GetPointAtTime(0)), endOfPathInstruction);
+                
+
+                    setPathEnds();
+                    switched = true;
+
+                }
+                else if (Vector3.Distance(transform.position, pathCreator.path.GetPointAtTime(0.9999999f)) < 0.1 && path_f != null)
+                {
+                    //Switch to Second Path
+                    track = path_f.gameObject;
+                    pathCreator = track.GetComponent<PathCreator>();
+
+                    transform.position = pathCreator.path.GetPointAtDistance(pathCreator.path.GetClosestDistanceAlongPath(pathCreator.path.GetPointAtTime(0.9999999f)), endOfPathInstruction);
+                    transform.rotation = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(pathCreator.path.GetPointAtTime(0.9999999f)), endOfPathInstruction);
+                    setPathEnds();
+                    switched = true;
+                }
+                else
+                {
+                    transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+                    transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+                }
             }
+            
 
             
         }
