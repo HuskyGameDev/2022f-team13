@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using PathCreation;
 using UnityEngine.UI;
+using PathCreation.Examples;
 
 public class Pather : MonoBehaviour
 {
@@ -18,6 +19,10 @@ public class Pather : MonoBehaviour
     public float train_speed = 0.0f;
     public bool Held { get; private set; } = false;
     public GameManager gm;
+    public PathGenerator path_s;
+    public PathGenerator path_f;
+
+    private GameObject track;
     
     Vector2 v2;
     // Start is called before the first frame update
@@ -28,7 +33,10 @@ public class Pather : MonoBehaviour
         if (pathCreator != null)
         {
             // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
+            track = pathCreator.gameObject;
             pathCreator.pathUpdated += OnPathChanged;
+            setPathEnds();
+            
         }
         Held = false;
     }
@@ -71,6 +79,25 @@ public class Pather : MonoBehaviour
             transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
 
 
+            Debug.Log(transform.position + " " + pathCreator.path.GetPointAtTime(0) + " " + pathCreator.path.GetPointAtTime(0.9999999f));
+            //Check if time to switch
+            if (Vector3.Distance(transform.position, pathCreator.path.GetPointAtTime(0)) < 0.001 && path_s != null)
+            {
+                //Switch to First Path
+                track = path_s.gameObject;
+                pathCreator = track.GetComponent<PathCreator>();
+
+                
+                setPathEnds();
+
+            } else if (Vector3.Distance(transform.position, pathCreator.path.GetPointAtTime(0.9999999f)) < 0.001 && path_f != null)
+            {
+                //Switch to Second Path
+                track = path_f.gameObject;
+                pathCreator = track.GetComponent<PathCreator>();
+                setPathEnds();
+            }
+
             
         }
     }
@@ -94,12 +121,18 @@ public class Pather : MonoBehaviour
         //display new total distance travelled
         gm.ChangeText(totalDistanceTravelled);
     }
+
+    void setPathEnds()
+    {
+        path_s = track.GetComponent<PathGenerator>().path_s;
+        path_f = track.GetComponent<PathGenerator>().path_f;
+    }
+
     void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Coal"))
         {
             other.gameObject.GetComponent<CarScript>().attached = true;
-            other.gameObject.GetComponent<CarScript>().currentPosition = distanceTravelled - 1.5f;
             other.gameObject.GetComponent<CarScript>().trainRef = this.gameObject;
         }
     }
