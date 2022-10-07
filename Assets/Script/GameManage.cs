@@ -48,7 +48,7 @@ public class GameManage : MonoBehaviour
     private void Update()
     {
         // all of the componets of the train have to reach the desired destination 
-        // Gotolevelselect();
+        //Gotolevelselect();
     }
 
     // Load the levelselctscence 
