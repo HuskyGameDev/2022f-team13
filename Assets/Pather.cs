@@ -81,7 +81,7 @@ public class Pather : MonoBehaviour
             
 
 
-            Debug.Log(transform.position + " " + pathCreator.path.GetPointAtTime(0) + " " + pathCreator.path.GetPointAtTime(0.9999999f));
+            // Debug.Log(transform.position + " " + pathCreator.path.GetPointAtTime(0) + " " + pathCreator.path.GetPointAtTime(0.9999999f));
             //Check if time to switch
             if(switched)
             {
