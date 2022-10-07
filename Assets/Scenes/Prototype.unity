@@ -904,7 +904,7 @@ MonoBehaviour:
   speed: 10
   distanceTravelled: 0
   totalDistanceTravelled: 0
-  smooth: 5
+  smooth: 20
   train_speed: 0
   gm: {fileID: 2027678641}
   path_s: {fileID: 0}
@@ -1914,6 +1914,10 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 2027678641}
+    - target: {fileID: 1946009591946543670, guid: 13403c0f3c161de4b81c4f6d738dcc18, type: 3}
+      propertyPath: smooth
+      value: 200
+      objectReference: {fileID: 0}
     - target: {fileID: 1946009591946543670, guid: 13403c0f3c161de4b81c4f6d738dcc18, type: 3}
       propertyPath: trainRef
       value: 
