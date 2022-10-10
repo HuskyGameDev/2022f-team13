@@ -9,6 +9,7 @@ TagManager:
   - Gold
   - TrainStation
   - Path
+  - Train
   layers:
   - Default
   - TransparentFX

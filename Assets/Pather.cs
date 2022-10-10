@@ -22,6 +22,7 @@ public class Pather : MonoBehaviour
     public PathGenerator path_s;
     public PathGenerator path_f;
     private bool switched;
+    public bool attached;
 
     private GameObject track;
     
@@ -39,6 +40,7 @@ public class Pather : MonoBehaviour
             setPathEnds();
             
         }
+        attached = false;
         Held = false;
         switched = false;
     }
@@ -163,7 +165,11 @@ public class Pather : MonoBehaviour
         if (other.gameObject.CompareTag("Coal"))
         {
             other.gameObject.GetComponent<CarScript>().attached = true;
-            other.gameObject.GetComponent<CarScript>().trainRef = this.gameObject;
+            other.gameObject.GetComponent<CarScript>().connectRef = this.gameObject;
+        }
+        else if(other.gameObject.CompareTag("Train") && other != this.gameObject)
+        {
+            other.gameObject.GetComponent<Pather>().attached = true;
         }
     }
 }

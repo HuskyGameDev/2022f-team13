@@ -16,15 +16,14 @@ public class CarScript : MonoBehaviour
     public bool attached;
     public float car_speed = 0.0f;
     public GameManager gm;
-    public GameObject trainRef;
-    public GameObject newTrainRef;
+    public GameObject connectRef;
+    public GameObject newconnectRef;
 
     Vector2 v2;
     // Start is called before the first frame update
     void Start()
     {
         attached = false;
-        currentPosition = 2;
         if (pathCreator != null)
         {
             // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
@@ -40,17 +39,18 @@ public class CarScript : MonoBehaviour
             
             if (attached)
             {
-                if (trainRef.GetComponent<Pather>().Held)
-                {
-                    currentPosition += trainRef.GetComponent<Pather>().train_speed * Time.deltaTime;
-                }
+                if (connectRef.GetComponent<Pather>().Held)
+                 {
+                     currentPosition += connectRef.GetComponent<Pather>().train_speed * Time.deltaTime;
+                 }
+                
                 else
                 {
                     currentPosition += 0 * Time.deltaTime;
                 }
             }
             //Check if mouse is clicking on the car when attached, detach from train if it is
-            if ((!Input.GetMouseButton(0)) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5) && !trainRef.GetComponent<Pather>().Held)
+            if (Input.GetMouseButton(1) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5))
             {
                attached = false;
                currentPosition += 0 * Time.deltaTime;
@@ -66,5 +66,17 @@ public class CarScript : MonoBehaviour
     void OnPathChanged()
     {
         currentPosition = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
+    }
+    void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.CompareTag("Coal"))
+        {
+            other.gameObject.GetComponent<CarScript>().attached = true;
+            other.gameObject.GetComponent<CarScript>().connectRef = this.connectRef;
+        }
+        else if (other.gameObject.CompareTag("Train") && other != this.gameObject)
+        {
+            other.gameObject.GetComponent<Pather>().attached = true;
+        }
     }
 }
