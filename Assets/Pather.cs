@@ -137,9 +137,6 @@ public class Pather : MonoBehaviour
             transform.position = pathc.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
             transform.rotation = pathc.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
                 
-       
-            
-
             
         }
     }
@@ -147,7 +144,6 @@ public class Pather : MonoBehaviour
     void OnPathChanged()
     {
         distanceTravelled = pathc.path.GetClosestDistanceAlongPath(transform.position);
-        Debug.Log("TRIGGERED\n");
     }
 
     void AdjustDistance()

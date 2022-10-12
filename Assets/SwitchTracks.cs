@@ -19,7 +19,7 @@ public class SwitchTracks : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (entrance == null)
+        if (entrance == null && upper.GetComponent<PathGenerator>().path_s != null)
         {
             entrance = upper.GetComponent<PathGenerator>().path_s;
             enter = entrance.GetComponent<PathGenerator>();

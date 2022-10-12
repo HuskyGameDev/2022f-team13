@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &877785648382907940
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 184051101427924806}
+  m_Layer: 0
+  m_Name: Holder2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &184051101427924806
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877785648382907940}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4390827901377998132}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1229048299886988797
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,7 +144,7 @@ Transform:
   m_GameObject: {fileID: 2554387615978131473}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 7.69, y: -1.05, z: 0.0071157594}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 20, y: 20, z: 20}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4390827901377998132}
@@ -126,7 +157,7 @@ MeshFilter:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2554387615978131473}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+  m_Mesh: {fileID: -4946331212600586933, guid: 4b3d2a6b92880954eb5e345002ed3514, type: 3}
 --- !u!23 &8076506029043031026
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -180,8 +211,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 0.08495462, y: 0.060634553, z: 1}
+  m_Center: {x: -0.022800148, y: -0.0045600235, z: 0}
 --- !u!114 &6673550342515503914
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -194,6 +225,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a2922d2ca07650449b86487a132dc4f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  upper: {fileID: 0}
+  lower: {fileID: 0}
+  entrance: {fileID: 0}
 --- !u!1 &4390827899993225378
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +418,9 @@ MonoBehaviour:
   - {fileID: 0}
   path_s: {fileID: 0}
   path_f: {fileID: 0}
+  prefab: {fileID: 7452127416859156879, guid: f7e0fdda3239955448a7d9b386158583, type: 3}
+  holder: {fileID: 5543210479068255427}
+  spacing: 0.35
 --- !u!1 &4390827900981086614
 GameObject:
   m_ObjectHideFlags: 0
@@ -504,6 +541,8 @@ Transform:
   - {fileID: 5731552792516152620}
   - {fileID: 693596358820698125}
   - {fileID: 3622245798869165057}
+  - {fileID: 743782617988423841}
+  - {fileID: 184051101427924806}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -591,6 +630,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &5543210479068255427
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 743782617988423841}
+  m_Layer: 0
+  m_Name: Holder
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &743782617988423841
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5543210479068255427}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4390827901377998132}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &6243234692640460040
 GameObject:
   m_ObjectHideFlags: 0
@@ -656,7 +726,7 @@ MonoBehaviour:
       - 0
       globalNormalsAngle: 0
       flipNormals: 0
-    vertexPathUpToDate: 1
+    vertexPathUpToDate: 0
     vertexPathMaxAngleError: 0.3
     vertexPathMinVertexSpacing: 0
     showTransformTool: 0
@@ -697,6 +767,9 @@ MonoBehaviour:
   - {fileID: 0}
   path_s: {fileID: 0}
   path_f: {fileID: 0}
+  prefab: {fileID: 7452127416859156879, guid: f7e0fdda3239955448a7d9b386158583, type: 3}
+  holder: {fileID: 877785648382907940}
+  spacing: 0.35
 --- !u!1 &8670807520090849564
 GameObject:
   m_ObjectHideFlags: 0

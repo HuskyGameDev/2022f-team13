@@ -17,17 +17,27 @@ namespace PathCreation.Examples
         public GameObject path_s;
         public GameObject path_f;
 
+        //Track Generator Variables
+        public GameObject prefab;
+        public GameObject holder;
+        public float spacing = 3;
+        const float minSpacing = .1f;
+
+        private PathCreator pathc;
+
         void Start()
         {
             if (waypoints.Length > 0)
             {
                 // Create a new bezier path from the waypoints.
                 BezierPath bezierPath = new BezierPath(waypoints, closedLoop, PathSpace.xy);
-                GetComponent<PathCreator>().bezierPath = bezierPath;
+                pathc = GetComponent<PathCreator>();
+                pathc.bezierPath = bezierPath;
                 previouslength = waypoints.Length;
             }
 
             gm = GameObject.FindWithTag("The manager").GetComponent<GameManager>();
+            Generate();
            
         }
 
@@ -61,6 +71,44 @@ namespace PathCreation.Examples
                         }
                     }
                 }
+            }
+        }
+
+        void Generate()
+        {
+            if (pathc != null && prefab != null && holder != null)
+            {
+                DestroyObjects();
+
+                VertexPath path = pathc.path;
+
+                spacing = Mathf.Max(minSpacing, spacing);
+                float dst = 0;
+
+                while (dst < path.length)
+                {
+                    Vector3 point = path.GetPointAtDistance(dst);
+                    Quaternion rot = path.GetRotationAtDistance(dst);
+                    Instantiate(prefab, point, rot, holder.transform);
+                    dst += spacing;
+                }
+            }
+        }
+
+        void DestroyObjects()
+        {
+            int numChildren = holder.transform.childCount;
+            for (int i = numChildren - 1; i >= 0; i--)
+            {
+                DestroyImmediate(holder.transform.GetChild(i).gameObject, false);
+            }
+        }
+
+        protected void PathUpdated()
+        {
+            if (pathc != null)
+            {
+                Generate();
             }
         }
     }
