@@ -26,12 +26,14 @@ public class Pather : MonoBehaviour
     private bool switched; //One-way switch to stop constant jumping on end of track
     public bool attached;
     private PathCreator pathc;
+    public GameObject trainModel;
 
     
     Vector2 v2;
     // Start is called before the first frame update
     void Start()
     {
+        trainModel = this.gameObject.transform.GetChild(0).gameObject;
         oldDistanceTravelled = 0;
         totalDistanceTravelled = 0;
         if (currentPath != null)
@@ -50,6 +52,13 @@ public class Pather : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Update our Paths if they are not known, should only happen once realistically
+        if(path_f == null && path_s == null)
+        {
+            path_f = currentPath.GetComponent<PathGenerator>().path_f;
+            path_s = currentPath.GetComponent<PathGenerator>().path_s;
+        }
+
         if (pathc != null)
         {
             //Check if the mouse is in the proper position to start moving the train when clicked
@@ -72,7 +81,7 @@ public class Pather : MonoBehaviour
                 //This looks scary because I put it on one line. It is basically: (closest_mouse_position - train_position) * smooth, clamped between (-speed, speed). Otherwise known as a p-loop
                 train_speed = Mathf.Clamp((pathc.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition)) - distanceTravelled) * smooth, -speed, speed);
                 distanceTravelled += train_speed * Time.deltaTime;
-                AdjustDistance(); //Related to distance measure, getting thrown out a fuqing window
+                AdjustDistance();
 
 
             }
@@ -82,54 +91,53 @@ public class Pather : MonoBehaviour
                 Held = false;
             }
 
-            
-
-
-            // Debug.Log(transform.position + " " + pathCreator.path.GetPointAtTime(0) + " " + pathCreator.path.GetPointAtTime(0.9999999f));
-            //Check if time to switch
+            //Switch Tracks
+            //Steps:
+            //1. Figure out if we are end the ends of the track
+            //2. Figure out if there is a new track attached at that end
+            //3. Switch Tracks
+            //4. DO NOT UNDER ANY CIRCUMSTANCES TELEPORT, I SWEAR TO ALL THINGS HOLY I WILL REND THIS TRAIN FROM ITS TRACKS IF IT IS SO MUCH AS ONE PIXEL TOO FAR
             if(switched)
             {
-                //Something needs to happen here that moves the train out of the range that let's it teleport
-                transform.position = pathc.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-                transform.rotation = pathc.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
-                if (Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0)) > 0.1 && Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0.9999999f)) > 0.1)
+                if (Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0)) > 0.1 && Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0.99f)) > 0.1)
                 {
                     switched = false;
                 }
-                
             } else
             {
-                if (Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0)) < 0.1 && path_s != null)
+                float dist_s = Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0));
+                float dist_f = Vector3.Distance(transform.position, pathc.path.GetPointAtTime(.99f));
+                if (dist_s < 0.12 && path_s != null)
                 {
-                    //Switch to First Path
-                    currentPath = path_s.gameObject;
+                    currentPath = path_s;
                     pathc = currentPath.GetComponent<PathCreator>();
-
-                    transform.position = pathc.path.GetPointAtDistance(pathc.path.GetClosestDistanceAlongPath(pathc.path.GetPointAtTime(0)), endOfPathInstruction);
-                    transform.rotation = pathc.path.GetRotationAtDistance(pathc.path.GetClosestDistanceAlongPath(pathc.path.GetPointAtTime(0)), endOfPathInstruction);
-                
-
+                    distanceTravelled = pathc.path.GetClosestDistanceAlongPath(transform.position);
                     setPathEnds();
-                    switched = true;
-
+                    //Do Something here that resets distance travelled in order to make it work.
+                    if (distanceTravelled < 1)
+                    {
+                        trainModel.transform.Rotate(trainModel.transform.rotation.x, trainModel.transform.rotation.y, trainModel.transform.rotation.z - 180f, Space.Self);
+                    }
                 }
-                else if (Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0.9999999f)) < 0.1 && path_f != null)
+                else if (dist_f < 0.12 && path_f != null)
                 {
-                    //Switch to Second Path
-                    currentPath = path_f.gameObject;
+                    currentPath = path_f;
                     pathc = currentPath.GetComponent<PathCreator>();
-
-                    transform.position = pathc.path.GetPointAtDistance(pathc.path.GetClosestDistanceAlongPath(pathc.path.GetPointAtTime(0.9999999f)), endOfPathInstruction);
-                    transform.rotation = pathc.path.GetRotationAtDistance(pathc.path.GetClosestDistanceAlongPath(pathc.path.GetPointAtTime(0.9999999f)), endOfPathInstruction);
+                    distanceTravelled = pathc.path.GetClosestDistanceAlongPath(transform.position);
                     setPathEnds();
-                    switched = true;
+                    //Do Something here that resets distance travelled in order to make it work.
+                    if(distanceTravelled > 1)
+                    {
+                        trainModel.transform.Rotate(trainModel.transform.rotation.x, trainModel.transform.rotation.y, trainModel.transform.rotation.z + 180f, Space.Self);
+                    }
                 }
-                else
-                {
-                    transform.position = pathc.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-                    transform.rotation = pathc.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
-                }
+                switched = true;
             }
+           
+            transform.position = pathc.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+            transform.rotation = pathc.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+                
+       
             
 
             
@@ -139,6 +147,7 @@ public class Pather : MonoBehaviour
     void OnPathChanged()
     {
         distanceTravelled = pathc.path.GetClosestDistanceAlongPath(transform.position);
+        Debug.Log("TRIGGERED\n");
     }
 
     void AdjustDistance()

@@ -720,17 +720,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
---- !u!114 &1512721020 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3398008808686195323, guid: 3ef5ef317c5ebd24d8a3ab926f3608cf, type: 3}
-  m_PrefabInstance: {fileID: 1943534319}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 242278131}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e5ac92bc18f545cc84cd886ece82b4d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1565027906
 GameObject:
   m_ObjectHideFlags: 0
@@ -1000,7 +989,7 @@ PrefabInstance:
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: pathCreator
       value: 
-      objectReference: {fileID: 1512721020}
+      objectReference: {fileID: 0}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: currentPosition
       value: 7
@@ -1406,11 +1395,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3622245798869165057, guid: 06d89ed7a6d97ab42a57ad6dde33dae1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.51
+      value: -0.12
       objectReference: {fileID: 0}
     - target: {fileID: 3622245798869165057, guid: 06d89ed7a6d97ab42a57ad6dde33dae1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.16
+      value: -1.51
       objectReference: {fileID: 0}
     - target: {fileID: 4022310064253292878, guid: 06d89ed7a6d97ab42a57ad6dde33dae1, type: 3}
       propertyPath: gm
@@ -1502,11 +1491,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4390827900360054220, guid: 06d89ed7a6d97ab42a57ad6dde33dae1, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.92
+      value: -2.222
       objectReference: {fileID: 0}
     - target: {fileID: 4390827900360054220, guid: 06d89ed7a6d97ab42a57ad6dde33dae1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.05
+      value: -0.36
       objectReference: {fileID: 0}
     - target: {fileID: 4390827900981086613, guid: 06d89ed7a6d97ab42a57ad6dde33dae1, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1514,7 +1503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4390827900981086613, guid: 06d89ed7a6d97ab42a57ad6dde33dae1, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.83
+      value: -2.61
       objectReference: {fileID: 0}
     - target: {fileID: 4390827901377998132, guid: 06d89ed7a6d97ab42a57ad6dde33dae1, type: 3}
       propertyPath: m_RootOrder
@@ -1863,7 +1852,7 @@ PrefabInstance:
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: pathCreator
       value: 
-      objectReference: {fileID: 1512721020}
+      objectReference: {fileID: 0}
     - target: {fileID: 3898140334937328938, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: m_Name
       value: Car
