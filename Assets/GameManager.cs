@@ -10,12 +10,14 @@ public class GameManager : MonoBehaviour
     public float distance = 1;
     public bool bricks;
     public bool logs;
+    public GameObject[] paths;
 
     // Start is called before the first frame update
     void Start()
     {
         Time.timeScale = 1; //unpauses the game if it was paused
         distanceText.text = "Distance Traveled: 0";
+        paths = GameObject.FindGameObjectsWithTag("Path");
     }
 
     public void ChangeText(float addDistance)
