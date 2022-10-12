@@ -10,6 +10,9 @@ TagManager:
   - TrainStation
   - Path
   - Train
+  - Logs
+  - Bricks
+  - Locomotive
   layers:
   - Default
   - TransparentFX
