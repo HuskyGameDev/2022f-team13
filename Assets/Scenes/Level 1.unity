@@ -983,7 +983,6 @@ GameObject:
   - component: {fileID: 997880440}
   - component: {fileID: 997880439}
   - component: {fileID: 997880443}
-  - component: {fileID: 997880444}
   m_Layer: 0
   m_Name: Proximity Check3D
   m_TagString: Untagged
@@ -1018,7 +1017,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31504731576d1484cb09ef60976d4c79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  railType: Coal
+  railType: Locomotive
 --- !u!65 &997880440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1027,7 +1026,7 @@ BoxCollider:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997880436}
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
@@ -1039,7 +1038,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 997880436}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -1098,20 +1097,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &997880444
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 997880436}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b307d194aab8bc848be85adcb3df2b0f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  carTag: Locomotive
-  gmFuction: 
 --- !u!1 &1052391142
 GameObject:
   m_ObjectHideFlags: 0
@@ -1549,7 +1534,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c16fbe01364a7f04d9cca683caa1ba80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  railType: Coal
+  railType: Locomotive
 --- !u!61 &1411945179
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -2455,7 +2440,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1961025962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0213051b6694a641ba71179f88ae120, type: 3}
+  m_Script: {fileID: 11500000, guid: b72d11eddfd35d9449491478b0130989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1972396627

@@ -17,20 +17,20 @@ public class WinConditions : MonoBehaviour
 
 
     //when train comes in contact with the station and set up call function in GameManager.cs
-     void OnCollisionEnter(Collision collision){
-        if ((collision.gameObject.tag == carTag) && ( carTag == "Locomotive" )){
-            
-            FindObjectOfType<GameManager>().Victory();
-        }
+ //    void OnCollisionEnter(Collision collision){
+ //       if ((collision.gameObject.tag == carTag) && ( carTag == "Locomotive" )){
+ //           
+ //           FindObjectOfType<GameManager>().Victory();
+ //       }
 
-        if ((collision.gameObject.tag == carTag) && ( carTag == "Bricks") ){
+ //       if ((collision.gameObject.tag == carTag) && ( carTag == "Bricks") ){
             
-            FindObjectOfType<GameManager>().Bricks();
-        }
+ //           FindObjectOfType<GameManager>().Bricks();
+ //       }
 
-        if ((collision.gameObject.tag == carTag) && (carTag == "Logs") ){
+ //       if ((collision.gameObject.tag == carTag) && (carTag == "Logs") ){
             
-            FindObjectOfType<GameManager>().Logs();
-        }
-     }
+ //           FindObjectOfType<GameManager>().Logs();
+ //       }
+ //    }
 }

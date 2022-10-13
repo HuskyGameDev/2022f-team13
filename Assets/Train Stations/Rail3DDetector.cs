@@ -9,14 +9,14 @@ public class Rail3DDetector : MonoBehaviour
 {
     //Variable for the tag we are using for each individual car that we can change easily
     [SerializeField] string railType = "Gold";
-    GameObject allStations;
+    GameObject gameManager;
 
     //This finds the gameobject that is holding all of the stations
     //We need this to access the gamemanage script so we can
     //update winning conditions
     private void Start()
     {
-        allStations = GameObject.Find("All TrainStations");
+        gameManager = GameObject.Find("GameManager");
     }
 
     //When something enters the proximity check3d, it checks for the right tag
@@ -25,7 +25,7 @@ public class Rail3DDetector : MonoBehaviour
     {
         if (collision.tag == railType)
         {
-            allStations.GetComponent<GameManage>().updateRailCount(1);
+            gameManager.GetComponent<GameManager>().Victory(1);
             Debug.Log("3D object with tag '" + railType +"': " + collision + " detected");
         }
         
@@ -40,7 +40,7 @@ public class Rail3DDetector : MonoBehaviour
     {
         if (collision.tag == railType)
         {
-            allStations.GetComponent<GameManage>().updateRailCount(-1);
+            gameManager.GetComponent<GameManager>().Victory(-1);
             Debug.Log("3D object with tag '" + railType + "': " + collision + " has left range");
 
         }

@@ -10,14 +10,14 @@ public class RailDetector : MonoBehaviour
     //Variable for the tag we are using for each individual car that we can change easily
     [SerializeField] string railType = "Gold";
 
-    GameObject allStations;
+    GameObject gameManager;
 
     //This finds the gameobject that is holding all of the stations
     //We need this to access the gamemanage script so we can
     //update winning conditions
     private void Start()
     {
-        allStations = GameObject.Find("All TrainStations");
+        gameManager = GameObject.Find("GameManager");
     }
 
 
@@ -27,7 +27,7 @@ public class RailDetector : MonoBehaviour
     {
         if (collision.tag == railType)
         {
-            allStations.GetComponent<GameManage>().updateRailCount(1);
+            gameManager.GetComponent<GameManager>().Victory(1);
             Debug.Log("2D object with tag '" + railType + "': " + collision + " detected");
         }
 
@@ -42,7 +42,7 @@ public class RailDetector : MonoBehaviour
     {
         if (collision.tag == railType)
         {
-            allStations.GetComponent<GameManage>().updateRailCount(-1);
+            gameManager.GetComponent<GameManager>().Victory(-1);
             Debug.Log("2D object with tag '" + railType + "': " + collision + " has left range");
 
         }
