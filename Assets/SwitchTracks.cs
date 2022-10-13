@@ -12,8 +12,8 @@ public class SwitchTracks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        upper = this.transform.parent.Find("Upper").gameObject;
-        lower = this.transform.parent.Find("Lower").gameObject;
+        upper = this.transform.parent.parent.Find("Upper").gameObject;
+        lower = this.transform.parent.parent.Find("Lower").gameObject;
     }
 
     // Update is called once per frame

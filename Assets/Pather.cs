@@ -26,6 +26,7 @@ public class Pather : MonoBehaviour
     private bool switched; //One-way switch to stop constant jumping on end of track
     public bool attached;
     private PathCreator pathc;
+    private PathGenerator pathg;
     public GameObject trainModel;
 
     
@@ -40,6 +41,7 @@ public class Pather : MonoBehaviour
         {
             // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
             pathc = currentPath.GetComponent<PathCreator>();
+            pathg = currentPath.GetComponent<PathGenerator>();
             pathc.pathUpdated += OnPathChanged;
             setPathEnds();
             
@@ -53,10 +55,10 @@ public class Pather : MonoBehaviour
     void Update()
     {
         //Update our Paths if they are not known, should only happen once realistically
-        if(path_f == null && path_s == null)
+        if(!GameObject.ReferenceEquals(path_f, pathg.path_f) || !GameObject.ReferenceEquals(path_s, pathg.path_s))
         {
-            path_f = currentPath.GetComponent<PathGenerator>().path_f;
-            path_s = currentPath.GetComponent<PathGenerator>().path_s;
+            path_f = pathg.path_f;
+            path_s = pathg.path_s;
         }
 
         if (pathc != null)
@@ -111,6 +113,7 @@ public class Pather : MonoBehaviour
                 {
                     currentPath = path_s;
                     pathc = currentPath.GetComponent<PathCreator>();
+                    pathg = currentPath.GetComponent<PathGenerator>();
                     distanceTravelled = pathc.path.GetClosestDistanceAlongPath(transform.position);
                     setPathEnds();
                     //Do Something here that resets distance travelled in order to make it work.
@@ -123,6 +126,7 @@ public class Pather : MonoBehaviour
                 {
                     currentPath = path_f;
                     pathc = currentPath.GetComponent<PathCreator>();
+                    pathg = currentPath.GetComponent<PathGenerator>();
                     distanceTravelled = pathc.path.GetClosestDistanceAlongPath(transform.position);
                     setPathEnds();
                     //Do Something here that resets distance travelled in order to make it work.
@@ -163,8 +167,8 @@ public class Pather : MonoBehaviour
 
     void setPathEnds()
     {
-        path_s = currentPath.GetComponent<PathGenerator>().path_s;
-        path_f = currentPath.GetComponent<PathGenerator>().path_f;
+        path_s = pathg.path_s;
+        path_f = pathg.path_f;
     }
 
     void OnTriggerEnter(Collider other)
