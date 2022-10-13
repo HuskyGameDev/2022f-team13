@@ -1720,6 +1720,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1274076929988285118, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: m_CastShadows
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2664627464213438729, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
       propertyPath: m_Name
       value: Train
