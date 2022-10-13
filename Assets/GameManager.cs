@@ -38,9 +38,9 @@ public class GameManager : MonoBehaviour
     //allows the vistory screen to display tyhe last recorded distance
     public void Victory(int i){
         correctRails = correctRails + i;
-        Debug.Log(correctRails + " Ding");
         if(correctRails == numStations){
             Time.timeScale = 0;
+            Debug.Log(distance);
             VictoryScreen.Setup(distance);
         }
     }
