@@ -124,8 +124,8 @@ public class CarScript : MonoBehaviour
                 switched = true;
             }
 
-            transform.position = pathc.path.GetPointAtDistance(currentPosition);
-            transform.rotation = pathc.path.GetRotationAtDistance(currentPosition);
+            transform.position = pathc.path.GetPointAtDistance(currentPosition, endOfPathInstruction);
+            transform.rotation = pathc.path.GetRotationAtDistance(currentPosition, endOfPathInstruction);
 
 
 
