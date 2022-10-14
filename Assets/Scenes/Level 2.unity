@@ -1679,6 +1679,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2664627464213438732, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: m_IsKinematic
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
 --- !u!1 &1204028583
@@ -2301,12 +2305,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2027678641}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
+      propertyPath: currentPath
+      value: 
+      objectReference: {fileID: 1996879335}
+    - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: pathCreator
       value: 
       objectReference: {fileID: 1512721020}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: currentPosition
-      value: 7
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 3898140334937328938, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: m_Name
@@ -2773,7 +2781,7 @@ MonoBehaviour:
       m_Calls: []
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 14
+    m_FontSize: 16
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 0
@@ -2849,12 +2857,16 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2027678641}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
+      propertyPath: currentPath
+      value: 
+      objectReference: {fileID: 1996879335}
+    - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: pathCreator
       value: 
       objectReference: {fileID: 1512721020}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: currentPosition
-      value: 8
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3898140334937328938, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: m_Name
