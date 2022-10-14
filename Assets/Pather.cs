@@ -173,7 +173,7 @@ public class Pather : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Coal"))
+        if ((other.gameObject.CompareTag("Coal")) || (other.gameObject.CompareTag("Bricks")) || (other.gameObject.CompareTag("Logs")) || (other.gameObject.CompareTag("Nukes")) || (other.gameObject.CompareTag("Bullets")))
         {
             other.gameObject.GetComponent<CarScript>().attached = true;
             other.gameObject.GetComponent<CarScript>().connectRef = this.gameObject;

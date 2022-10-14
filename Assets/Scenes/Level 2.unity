@@ -504,6 +504,11 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 388048379}
   m_CullTransparentMesh: 1
+--- !u!1 &398793776 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5694767742554530468, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+  m_PrefabInstance: {fileID: 1186214356}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &541135842
 GameObject:
   m_ObjectHideFlags: 0
@@ -1500,6 +1505,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2027678641}
     - target: {fileID: 2664627464213438730, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: trainModel
+      value: 
+      objectReference: {fileID: 398793776}
+    - target: {fileID: 2664627464213438730, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
       propertyPath: currentPath
       value: 
       objectReference: {fileID: 1996879335}
@@ -1549,7 +1558,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2664627464213438732, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
       propertyPath: m_IsKinematic
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664627464213438733, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: m_IsTrigger
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2664627464213438734, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
@@ -2459,6 +2476,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2027678641}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
+      propertyPath: carTag
+      value: Bricks
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: currentPath
       value: 
       objectReference: {fileID: 1996879335}
@@ -3236,6 +3257,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2027678641}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
+      propertyPath: carTag
+      value: Logs
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
+      propertyPath: attached
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: currentPath
       value: 
       objectReference: {fileID: 1996879335}
@@ -3469,7 +3498,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1961025962}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0213051b6694a641ba71179f88ae120, type: 3}
+  m_Script: {fileID: 11500000, guid: b72d11eddfd35d9449491478b0130989, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1996879335 stripped

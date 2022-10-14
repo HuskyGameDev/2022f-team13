@@ -361,7 +361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a25ab8118b94f43b6cc85cd6714dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelName: Level 2
+  LevelName: Level 1
 --- !u!114 &188789297
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1543,7 +1543,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 18a25ab8118b94f43b6cc85cd6714dfe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LevelName: Level 1
+  LevelName: Prototype
 --- !u!114 &1606960062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3110,6 +3110,10 @@ PrefabInstance:
       propertyPath: gm
       value: 
       objectReference: {fileID: 2027678641}
+    - target: {fileID: 2664627464213438730, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: attached
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2664627464213438730, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
       propertyPath: currentPath
       value: 

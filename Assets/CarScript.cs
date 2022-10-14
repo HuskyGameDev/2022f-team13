@@ -19,6 +19,7 @@ public class CarScript : MonoBehaviour
     public GameManager gm;
     public GameObject connectRef;
     public GameObject newconnectRef;
+    public string carTag;
 
     //Track Switching Stuff
     public PathCreator pathc;
@@ -144,7 +145,7 @@ public class CarScript : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag("Coal"))
+        if (other.gameObject.CompareTag(carTag))
         {
             other.gameObject.GetComponent<CarScript>().attached = true;
             other.gameObject.GetComponent<CarScript>().connectRef = this.connectRef;

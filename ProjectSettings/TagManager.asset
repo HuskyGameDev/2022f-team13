@@ -12,6 +12,8 @@ TagManager:
   - Train
   - Logs
   - Bricks
+  - Nukes
+  - Bullets
   layers:
   - Default
   - TransparentFX
