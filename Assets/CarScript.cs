@@ -17,8 +17,10 @@ public class CarScript : MonoBehaviour
     public bool attached;
     public float car_speed = 0.0f;
     public GameManager gm;
-    public GameObject connectRef;
-    public GameObject newconnectRef;
+    public GameObject connectRef1;
+    public GameObject connectRef2;
+    public float connectRef1Speed;
+    public float connectRef2Speed;
     public string carTag;
 
     //Track Switching Stuff
@@ -59,24 +61,60 @@ public class CarScript : MonoBehaviour
 
         if (pathc != null)
         {
-            
+            //if the car is attached to something
             if (attached)
             {
-                if (connectRef.GetComponent<Pather>().Held)
-                 {
-                     currentPosition += connectRef.GetComponent<Pather>().train_speed * Time.deltaTime;
-                 }
-                
+                //get the speed of the connected object
+                if (connectRef1.CompareTag("Train"))
+                {
+                    connectRef1Speed = connectRef1.GetComponent<Pather>().train_speed;
+                }
+                else if (connectRef1.CompareTag("Coal"))
+                {
+                    connectRef1Speed = connectRef1.GetComponent<CarScript>().car_speed;
+                }
+                //if there isn't a second thing connected, just go with the train
+                if (connectRef2 == null)
+                {
+                    car_speed = connectRef1Speed;
+                    currentPosition += car_speed * Time.deltaTime;
+                }
+
+
+                //if there is another object connected, compare their speeds and determine where to go
                 else
                 {
-                    currentPosition += 0 * Time.deltaTime;
+                    if (connectRef2.CompareTag("Train"))
+                    {
+                        connectRef2Speed = connectRef2.GetComponent<Pather>().train_speed;
+                    }
+                    else if (connectRef2.CompareTag("Coal"))
+                    {
+                        connectRef2Speed = connectRef2.GetComponent<CarScript>().car_speed;
+                    }
+                    //if the first connected object is faster go that way
+                    if (Mathf.Abs(connectRef1Speed) > Mathf.Abs(connectRef2Speed))
+                    {
+                        car_speed = connectRef1Speed;
+                        currentPosition += car_speed * Time.deltaTime;
+                    }
+                    //if the second connected object is faster, go that way
+                    else if (Mathf.Abs(connectRef1Speed) <= Mathf.Abs(connectRef2Speed))
+                    {
+                        car_speed = connectRef2Speed;
+                        currentPosition += car_speed * Time.deltaTime;
+                    }
                 }
             }
-            //Check if mouse is clicking on the car when attached, detach from train if it is
+            //Check if right mouse button is clicked on the car when attached, detach from train if it is
             if (Input.GetMouseButton(1) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5))
             {
-               attached = false;
-               currentPosition += 0 * Time.deltaTime;
+                attached = false;
+                connectRef1 = null;
+                connectRef2 = null;
+                connectRef1Speed = 0;
+                connectRef2Speed = 0;
+                currentPosition += 0 * Time.deltaTime;
             }
 
             //Switch Tracks
@@ -124,7 +162,6 @@ public class CarScript : MonoBehaviour
                 }
                 switched = true;
             }
-
             transform.position = pathc.path.GetPointAtDistance(currentPosition, endOfPathInstruction);
             transform.rotation = pathc.path.GetRotationAtDistance(currentPosition, endOfPathInstruction);
 
@@ -145,14 +182,31 @@ public class CarScript : MonoBehaviour
     }
     void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.CompareTag(carTag))
+        //if the other object is a car, connect with it by giving a reference, the other object will get the speed
+        if (other.gameObject.CompareTag("Coal"))
         {
             other.gameObject.GetComponent<CarScript>().attached = true;
-            other.gameObject.GetComponent<CarScript>().connectRef = this.connectRef;
+            if (other.gameObject.GetComponent<CarScript>().connectRef1 == null)
+            {
+                other.gameObject.GetComponent<CarScript>().connectRef1 = this.gameObject;
+            }
+            else if (other.gameObject.GetComponent<CarScript>().connectRef1 != this.gameObject)
+            {
+                other.gameObject.GetComponent<CarScript>().connectRef2 = this.gameObject;
+            }
         }
+        //if the other object is a train, connect with it by giving a reference, the other object will get the speed
         else if (other.gameObject.CompareTag("Train") && other != this.gameObject)
         {
             other.gameObject.GetComponent<Pather>().attached = true;
+            if (other.gameObject.GetComponent<Pather>().connectRef1 == null)
+            {
+                other.gameObject.GetComponent<Pather>().connectRef1 = this.gameObject;
+            }
+            else if (other.gameObject.GetComponent<Pather>().connectRef1 != this.gameObject)
+            {
+                other.gameObject.GetComponent<Pather>().connectRef2 = this.gameObject;
+            }
         }
     }
 }
