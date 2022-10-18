@@ -67,7 +67,7 @@ public class Pather : MonoBehaviour
 
         if (pathc != null)
         {
-            if (attached)
+            /*if (attached) At Least I have isolated the problem
             {
 
                 //get the speed of the connected object
@@ -113,7 +113,7 @@ public class Pather : MonoBehaviour
                         distanceTravelled += train_speed * Time.deltaTime;
                     }
                 }
-            }
+            }*/
             //Check if the mouse is in the proper position to start moving the train when clicked
             if (Input.GetMouseButton(0) && Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 1)
             {
@@ -134,9 +134,58 @@ public class Pather : MonoBehaviour
                 //This looks scary because I put it on one line. It is basically: (closest_mouse_position - train_position) * smooth, clamped between (-speed, speed). Otherwise known as a p-loop
                 train_speed = Mathf.Clamp((pathc.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition)) - distanceTravelled) * smooth, -speed, speed);
                 distanceTravelled += train_speed * Time.deltaTime;
+                //Mathf.Clamp(distanceTravelled, -speed, speed);
                 AdjustDistance();
 
 
+            } else if (attached)
+            {
+                //get the speed of the connected object
+                if (connectRef1.CompareTag("Train"))
+                {
+                    connectRef1Speed = connectRef1.GetComponent<Pather>().train_speed;
+                }
+                else if (connectRef1.CompareTag("Coal"))
+                {
+                    connectRef1Speed = connectRef1.GetComponent<CarScript>().car_speed;
+                }
+                //if there isn't a second thing connected, just go with the train
+                if (connectRef2 == null)
+                {
+                    train_speed = connectRef1Speed;
+                    distanceTravelled += train_speed * Time.deltaTime;
+                }
+                //if the other thing is a train connected
+                else
+                {
+                    if (connectRef2.CompareTag("Train"))
+                    {
+                        connectRef2Speed = connectRef2.GetComponent<Pather>().train_speed;
+                    }
+                    else if (connectRef2.CompareTag("Coal"))
+                    {
+                        connectRef2Speed = connectRef2.GetComponent<CarScript>().car_speed;
+                    }
+                    //if the first connected object is faster go that way
+                    if (Mathf.Abs(connectRef1Speed) > Mathf.Abs(connectRef2Speed))
+                    {
+                        train_speed = connectRef1Speed;
+                        distanceTravelled += train_speed * Time.deltaTime;
+                    }
+                    //if the second connected object is faster, go that way
+                    else if (Mathf.Abs(connectRef1Speed) < Mathf.Abs(connectRef2Speed))
+                    {
+                        train_speed = connectRef2Speed;
+                        distanceTravelled += train_speed * Time.deltaTime;
+                    }
+                    else
+                    {
+                        distanceTravelled += train_speed * Time.deltaTime;
+                    }
+                }
+            } else
+            {
+                distanceTravelled += 0 * Time.deltaTime;
             }
 
             if(!Input.GetMouseButton(0))
@@ -199,7 +248,7 @@ public class Pather : MonoBehaviour
             }
             transform.position = pathc.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
             transform.rotation = pathc.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
-                
+            Debug.Log("Train: " + Time.deltaTime + "\n");   
             
         }
     }

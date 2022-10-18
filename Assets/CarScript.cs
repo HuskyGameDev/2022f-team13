@@ -106,6 +106,7 @@ public class CarScript : MonoBehaviour
                     }
                 }
             }
+            //Debug.Log(car_speed + " " + connectRef1Speed + " " + connectRef2Speed + "\n");
             //Check if right mouse button is clicked on the car when attached, detach from train if it is
             if (Input.GetMouseButton(1) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5))
             {
@@ -165,7 +166,7 @@ public class CarScript : MonoBehaviour
             transform.position = pathc.path.GetPointAtDistance(currentPosition, endOfPathInstruction);
             transform.rotation = pathc.path.GetRotationAtDistance(currentPosition, endOfPathInstruction);
 
-
+            Debug.Log("Car: " + Time.deltaTime + "\n");
 
         }
     }

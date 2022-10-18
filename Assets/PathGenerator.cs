@@ -58,13 +58,13 @@ namespace PathCreation.Examples
                 {
                     foreach (Transform t in path.GetComponent<PathGenerator>().waypoints)
                     {
-                        if (this.waypoints[0].position.Equals(t.position) && !GameObject.ReferenceEquals(path, this.gameObject))
+                        if (this.waypoints[0].position.Equals(t.position) && !GameObject.ReferenceEquals(path, this.gameObject) && !path.transform.IsChildOf(this.transform.parent))
                         {
                             //Find the "FIRST" point connection
                             path_s = path;
                         }
 
-                        if (this.waypoints[this.waypoints.Length - 1].position.Equals(t.position) && !GameObject.ReferenceEquals(path, this.gameObject))
+                        if (this.waypoints[this.waypoints.Length - 1].position.Equals(t.position) && !GameObject.ReferenceEquals(path, this.gameObject) && !path.transform.IsChildOf(this.transform.parent))
                         {
                             //Find the "FIRST" point connection
                             path_f = path;
