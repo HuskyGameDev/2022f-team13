@@ -36,8 +36,10 @@ public class Pather : MonoBehaviour
     float connectRef2SpeedPrev = 0;
     public float flip;
     public GameObject trainModel;
+    public float dist;
+    public GameObject shortest;
 
-    
+
     Vector2 v2;
     // Start is called before the first frame update
     void Start()
@@ -59,6 +61,7 @@ public class Pather : MonoBehaviour
         Held = false;
         switched = false;
         paths = gm.paths;
+        shortest = currentPath;
     }
 
     // Update is called once per frame
@@ -113,7 +116,37 @@ public class Pather : MonoBehaviour
                 //4. Turn that into a speed calculation here
                 //5. Profit????????
                 //6. Either Way this will be a big overhaul of how this calculation works, but it should ideally be somewhat isolated, since the other objects will not be PIDing at the same time
-                train_speed = Mathf.Clamp((pathc.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition)) - distanceTravelled) * smooth, -speed, speed);
+                
+                float shortestDist = Mathf.Infinity;
+                foreach (GameObject path in paths)
+                {
+                    PathCreator temp = path.GetComponent<PathCreator>();
+                    float calc = Vector3.Distance(temp.path.GetPointAtDistance(temp.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition))), Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                    if (calc < shortestDist)
+                    {
+                        shortest = path;
+                        shortestDist = calc;
+                    }
+                    Debug.Log(path.name + ", " + calc);
+
+                }
+                //Calculate our "distance" from the closest matching point
+                //Needs to be some kind of Search I guess, from the currentPath to the Desired Path.
+                //We only need to know which direction to go in, so this might be hella overkill for the task
+                shortest = ClosestPath(shortest);
+                
+                if(GameObject.ReferenceEquals(shortest, path_f))
+                {
+                    dist = 10;
+                } else if (GameObject.ReferenceEquals(shortest, path_s))
+                {
+                    dist = -10;
+                } else
+                {
+                    dist = pathc.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition));
+                }
+
+                train_speed = Mathf.Clamp((dist - distanceTravelled) * smooth, -speed, speed);
                 
 
 
@@ -196,14 +229,14 @@ public class Pather : MonoBehaviour
             //2. Figure out if there is a new track attached at that end
             //3. Switch Tracks
             //4. DO NOT UNDER ANY CIRCUMSTANCES TELEPORT, I SWEAR TO ALL THINGS HOLY I WILL REND THIS TRAIN FROM ITS TRACKS IF IT IS SO MUCH AS ONE PIXEL TOO FAR
-           if(switched)
-            {
-                if (Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0)) > 0.5 && Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0.99f)) > 0.5)
-                {
-                    switched = false;
-                }
-            } else
-            {
+            if(switched)
+             {
+                 if (Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0)) > 0.5 && Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0.99f)) > 0.5)
+                 {
+                     switched = false;
+                 }
+             } else
+             {
                 float dist_s = Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0));
                 float dist_f = Vector3.Distance(transform.position, pathc.path.GetPointAtTime(.99f));
                 if (dist_s < 0.12 && path_s != null)
@@ -214,10 +247,13 @@ public class Pather : MonoBehaviour
                     distanceTravelled = pathc.path.GetClosestDistanceAlongPath(transform.position);
                     setPathEnds();
                     //Do Something here that resets distance travelled in order to make it work.
+                    flip = 1;
                     if (distanceTravelled < 1)
                     {
                         trainModel.transform.Rotate(trainModel.transform.rotation.x, trainModel.transform.rotation.y, trainModel.transform.rotation.z - 180f, Space.Self);
+                        flip = -1;
                     }
+
                     switched = true;
                 }
                 else if (dist_f < 0.12 && path_f != null)
@@ -227,8 +263,8 @@ public class Pather : MonoBehaviour
                     pathg = currentPath.GetComponent<PathGenerator>();
                     distanceTravelled = pathc.path.GetClosestDistanceAlongPath(transform.position);
                     setPathEnds();
-                    //Do Something here that resets distance travelled in order to make it work.
-                    if(distanceTravelled > 1)
+                    //Do Something here that resets distance travelled in order to make it wor
+                    if (distanceTravelled > 1)
                     {
                         trainModel.transform.Rotate(trainModel.transform.rotation.x, trainModel.transform.rotation.y, trainModel.transform.rotation.z + 180f, Space.Self);
                     }
@@ -236,6 +272,7 @@ public class Pather : MonoBehaviour
                 }
                 
             }
+
             if (Input.GetMouseButton(1) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5))
             {
                 attached = false;
@@ -247,7 +284,6 @@ public class Pather : MonoBehaviour
             }
             transform.position = pathc.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
             transform.rotation = pathc.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
-            Debug.Log("Train: " + Time.deltaTime + "\n");   
             
         }
     }
@@ -259,14 +295,18 @@ public class Pather : MonoBehaviour
 
     void AdjustDistance()
     {
+        //if the train goes onto the branched paths
+        if (switched)
+        {
+            oldDistanceTravelled = distanceTravelled;
+        }
         //check to see if the new position of the train has changed from before
-        newDistanceTravelled = pathc.path.GetClosestDistanceAlongPath(transform.position);
-        if (Mathf.Abs(oldDistanceTravelled - newDistanceTravelled) >= 1)
+        if (Mathf.Abs(distanceTravelled - oldDistanceTravelled) >= 1)
         {
             //update the total distance travelled
-            totalDistanceTravelled += Mathf.Round(Mathf.Abs(oldDistanceTravelled - newDistanceTravelled));
+            totalDistanceTravelled += Mathf.Round(Mathf.Abs(oldDistanceTravelled - distanceTravelled));
             //make sure old distance travelled is updated
-            oldDistanceTravelled = newDistanceTravelled;
+            oldDistanceTravelled = distanceTravelled;
         }
         //display new total distance travelled
         gm.ChangeText(totalDistanceTravelled);
@@ -306,4 +346,37 @@ public class Pather : MonoBehaviour
             }
         }
     }
+
+    GameObject ClosestPath(GameObject desired)
+    {
+        float f = Mathf.Infinity;
+        float s = Mathf.Infinity;
+
+        if (GameObject.ReferenceEquals(currentPath, desired))
+        {
+            return currentPath;
+        }
+
+        if(path_f != null)
+        {
+           f = path_f.GetComponent<PathGenerator>().findClosestPath(desired, currentPath);
+        }
+
+        if(path_s != null)
+        {
+            s = path_s.GetComponent<PathGenerator>().findClosestPath(desired, currentPath);
+        }
+
+        if (f <= s)
+        {
+            return path_f;
+        } else if (f > s)
+        {
+            return path_s;
+        } else
+        {
+            return null;
+        }
+    }
+
 }

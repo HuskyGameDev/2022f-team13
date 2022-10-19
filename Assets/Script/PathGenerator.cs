@@ -23,6 +23,8 @@ namespace PathCreation.Examples
         public float spacing = 3;
         const float minSpacing = .1f;
 
+        public bool flag = false;
+
         private PathCreator pathc;
 
         void Start()
@@ -109,6 +111,35 @@ namespace PathCreation.Examples
             if (pathc != null)
             {
                 Generate();
+            }
+        }
+
+        public float findClosestPath(GameObject desired, GameObject last)
+        {
+            if (GameObject.ReferenceEquals(this.gameObject, desired))
+            {
+                return 0;
+            }
+
+            float f = Mathf.Infinity;
+            float s = Mathf.Infinity;
+            if (path_f != null && !GameObject.ReferenceEquals(path_f, last))
+            {
+                f = path_f.GetComponent<PathGenerator>().findClosestPath(desired, this.gameObject) + 1;
+            }
+
+            if (path_s != null && !GameObject.ReferenceEquals(path_s, last))
+            {
+                s = path_s.GetComponent<PathGenerator>().findClosestPath(desired, this.gameObject) + 1;
+            }
+
+            if (f <= s)
+            {
+                return f;
+            }
+            else
+            {
+                return s;
             }
         }
     }
