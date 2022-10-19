@@ -14,6 +14,9 @@ TagManager:
   - Bricks
   - Nukes
   - Bullets
+  - Locomotive
+  - Pigs
+  - Cows
   layers:
   - Default
   - TransparentFX

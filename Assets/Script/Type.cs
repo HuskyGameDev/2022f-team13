@@ -11,6 +11,8 @@ public class Type : MonoBehaviour
         Brick,
         Logs,
         Bullets,
+        Pigs,
+        Cows,
         Train
 
     };
