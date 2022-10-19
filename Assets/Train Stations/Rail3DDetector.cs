@@ -11,6 +11,8 @@ public class Rail3DDetector : MonoBehaviour
     [SerializeField] string railType;
     GameObject gameManager;
 
+    private int numberOfCol;
+
     //This finds the gameobject that is holding all of the stations
     //We need this to access the gamemanage script so we can
     //update winning conditions
@@ -18,16 +20,24 @@ public class Rail3DDetector : MonoBehaviour
     {
         gameManager = GameObject.Find("GameManager");
         railType = this.gameObject.GetComponent<Type>().e.ToString();
+        numberOfCol = 0;
     }
 
     //When something enters the proximity check3d, it checks for the right tag
     //It then updates the winning conditions in the gamemanage script
     private void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == railType)
+        Debug.Log("Collision");
+        if (collision.gameObject.GetComponent<Type>().e.ToString() == railType)
         {
-            gameManager.GetComponent<GameManager>().Victory(1);
-            Debug.Log("3D object with tag '" + railType +"': " + collision + " detected");
+            Debug.Log("Passed Check");
+            numberOfCol += 1;
+            if (numberOfCol == 1)
+            {
+                gameManager.GetComponent<GameManager>().Victory(1);
+                Debug.Log("3D object with tag '" + railType + "': " + collision + " detected");
+            }
+            
         }
         
 
@@ -39,10 +49,15 @@ public class Rail3DDetector : MonoBehaviour
     //It then updates the winning conditions in the gamemanage script
     private void OnTriggerExit(Collider collision)
     {
-        if (collision.tag == railType)
+        if (collision.gameObject.GetComponent<Type>().e.ToString() == railType)
         {
-            gameManager.GetComponent<GameManager>().Victory(-1);
-            Debug.Log("3D object with tag '" + railType + "': " + collision + " has left range");
+            numberOfCol -= 1;
+            if (numberOfCol == 0)
+            {
+                gameManager.GetComponent<GameManager>().Victory(-1);
+                Debug.Log("3D object with tag '" + railType + "': " + collision + " has left range");
+            }
+            
 
         }
     }
