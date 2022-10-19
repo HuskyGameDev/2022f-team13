@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2664627464213438733}
   - component: {fileID: 2664627464213438732}
   - component: {fileID: 2664627464213438734}
+  - component: {fileID: 510282123712572773}
   m_Layer: 0
   m_Name: Train
   m_TagString: Locomotive
@@ -57,9 +58,15 @@ MonoBehaviour:
   smooth: 20
   train_speed: 0
   gm: {fileID: 0}
+  paths: []
   path_s: {fileID: 0}
   path_f: {fileID: 0}
   attached: 0
+  connectRef1: {fileID: 0}
+  connectRef2: {fileID: 0}
+  connectRef1Speed: 0
+  connectRef2Speed: 0
+  flip: 0
   trainModel: {fileID: 0}
 --- !u!65 &2664627464213438733
 BoxCollider:
@@ -104,6 +111,19 @@ CapsuleCollider:
   m_Height: 2.0618682
   m_Direction: 2
   m_Center: {x: -0.7852342, y: -0.07563269, z: 0.5466744}
+--- !u!114 &510282123712572773
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2664627464213438729}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d9dfd4a9c997141b9ecfb06fb02083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  e: 5
 --- !u!1001 &4883741234501115893
 PrefabInstance:
   m_ObjectHideFlags: 0

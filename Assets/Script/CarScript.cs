@@ -21,6 +21,9 @@ public class CarScript : MonoBehaviour
     public GameObject connectRef2;
     public float connectRef1Speed;
     public float connectRef2Speed;
+    float connectRef1SpeedPrev = 0;
+    float connectRef2SpeedPrev = 0;
+    public float flip;
     public string carTag;
 
     //Track Switching Stuff
@@ -29,12 +32,13 @@ public class CarScript : MonoBehaviour
     public GameObject carModel;
     public GameObject path_s; //The tracks on either side of current track
     public GameObject path_f;
-    private bool switched; //One-way switch to stop constant jumping on end of track
+    public bool switched; //One-way switch to stop constant jumping on end of track
 
     Vector2 v2;
     // Start is called before the first frame update
     void Start()
     {
+        flip = 1;
         carModel = this.gameObject.transform.GetChild(0).gameObject;
         attached = false;
         if (currentPath != null)
@@ -64,25 +68,28 @@ public class CarScript : MonoBehaviour
             //if the car is attached to something
             if (attached)
             {
-                //get the speed of the connected object
-                if (connectRef1.CompareTag("Train"))
+                
+                //Steps:
+                //1. Check each side for a connection
+                //2. If connected collect the speed values
+                //3. Compare acceleration of one to the acceleration of another (current speed - previous speed)
+                //4. Store Previous Values
+                bool connect1 = (connectRef1 != null); //These will work as catch variables to avoid errors
+                bool connect2 = (connectRef2 != null);
+
+                if (connect1)
                 {
-                    connectRef1Speed = connectRef1.GetComponent<Pather>().train_speed;
-                }
-                else if (connectRef1.CompareTag("Coal"))
-                {
-                    connectRef1Speed = connectRef1.GetComponent<CarScript>().car_speed;
-                }
-                //if there isn't a second thing connected, just go with the train
-                if (connectRef2 == null)
-                {
-                    car_speed = connectRef1Speed;
-                    currentPosition += car_speed * Time.deltaTime;
+                    if (connectRef1.CompareTag("Train"))
+                    {
+                        connectRef1Speed = connectRef1.GetComponent<Pather>().train_speed;
+                    }
+                    else if (connectRef1.CompareTag("Coal"))
+                    {
+                        connectRef1Speed = connectRef1.GetComponent<CarScript>().car_speed;
+                    }
                 }
 
-
-                //if there is another object connected, compare their speeds and determine where to go
-                else
+                if (connect2)
                 {
                     if (connectRef2.CompareTag("Train"))
                     {
@@ -92,19 +99,35 @@ public class CarScript : MonoBehaviour
                     {
                         connectRef2Speed = connectRef2.GetComponent<CarScript>().car_speed;
                     }
-                    //if the first connected object is faster go that way
-                    if (Mathf.Abs(connectRef1Speed) > Mathf.Abs(connectRef2Speed))
-                    {
-                        car_speed = connectRef1Speed;
-                        currentPosition += car_speed * Time.deltaTime;
-                    }
-                    //if the second connected object is faster, go that way
-                    else if (Mathf.Abs(connectRef1Speed) <= Mathf.Abs(connectRef2Speed))
-                    {
-                        car_speed = connectRef2Speed;
-                        currentPosition += car_speed * Time.deltaTime;
-                    }
                 }
+
+                //Compare the acceleration values here
+                
+                if (Mathf.Abs(connectRef1Speed - connectRef1SpeedPrev) > Mathf.Abs(connectRef2Speed - connectRef2SpeedPrev))
+                {
+                    //Follow ref1
+                    car_speed = connectRef1Speed;
+                }
+                else if (Mathf.Abs(connectRef1Speed - connectRef1SpeedPrev) < Mathf.Abs(connectRef2Speed - connectRef2SpeedPrev))
+                {
+                    //follow ref2
+                    car_speed = connectRef2Speed;
+                }
+                else
+                {
+                    //Do nothing, Follow your own path
+                    //-Gandhi, probably
+
+                    //In actual functionality, this will not change the speed of the car because both sides of it will be equal meaning we are likely going the same speed as both of them.
+                    car_speed = Mathf.Abs(connectRef1Speed) > Mathf.Abs(connectRef2Speed) ? connectRef1Speed : connectRef2Speed;
+                }
+                
+                
+
+                connectRef1SpeedPrev = connectRef1Speed;
+                connectRef2SpeedPrev = connectRef2Speed;
+                currentPosition += car_speed * Time.deltaTime;
+
             }
             //Debug.Log(car_speed + " " + connectRef1Speed + " " + connectRef2Speed + "\n");
             //Check if right mouse button is clicked on the car when attached, detach from train if it is
@@ -126,7 +149,7 @@ public class CarScript : MonoBehaviour
             //4. DO NOT UNDER ANY CIRCUMSTANCES TELEPORT, I SWEAR TO ALL THINGS HOLY I WILL REND THIS TRAIN FROM ITS TRACKS IF IT IS SO MUCH AS ONE PIXEL TOO FAR
             if (switched)
             {
-                if (Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0)) > 0.1 && Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0.99f)) > 0.1)
+                if (Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0)) > 0.5 && Vector3.Distance(transform.position, pathc.path.GetPointAtTime(0.99f)) > 0.5)
                 {
                     switched = false;
                 }
@@ -147,6 +170,7 @@ public class CarScript : MonoBehaviour
                     {
                         carModel.transform.Rotate(carModel.transform.rotation.x, carModel.transform.rotation.y, carModel.transform.rotation.z - 180f, Space.Self);
                     }
+                    switched = true;
                 }
                 else if (dist_f < 0.12 && path_f != null)
                 {
@@ -160,8 +184,9 @@ public class CarScript : MonoBehaviour
                     {
                         carModel.transform.Rotate(carModel.transform.rotation.x, carModel.transform.rotation.y, carModel.transform.rotation.z + 180f, Space.Self);
                     }
+                    switched = true;
                 }
-                switched = true;
+               
             }
             transform.position = pathc.path.GetPointAtDistance(currentPosition, endOfPathInstruction);
             transform.rotation = pathc.path.GetRotationAtDistance(currentPosition, endOfPathInstruction);

@@ -8,7 +8,7 @@ using UnityEngine;
 public class Rail3DDetector : MonoBehaviour
 {
     //Variable for the tag we are using for each individual car that we can change easily
-    [SerializeField] string railType = "Gold";
+    [SerializeField] string railType;
     GameObject gameManager;
 
     //This finds the gameobject that is holding all of the stations
@@ -17,6 +17,7 @@ public class Rail3DDetector : MonoBehaviour
     private void Start()
     {
         gameManager = GameObject.Find("GameManager");
+        railType = this.gameObject.GetComponent<Type>().e.ToString();
     }
 
     //When something enters the proximity check3d, it checks for the right tag

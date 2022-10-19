@@ -111,6 +111,7 @@ GameObject:
   - component: {fileID: 3898140334937328917}
   - component: {fileID: 3898140334937328912}
   - component: {fileID: 3898140335167888561}
+  - component: {fileID: 2294368500450952171}
   m_Layer: 0
   m_Name: Car
   m_TagString: Coal
@@ -159,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7bf539ad27be07245a4936c31184211b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathCreator: {fileID: 0}
+  currentPath: {fileID: 0}
   rb: {fileID: 0}
   endOfPathInstruction: 2
   speed: 10
@@ -169,8 +170,18 @@ MonoBehaviour:
   attached: 0
   car_speed: 0
   gm: {fileID: 0}
-  connectRef: {fileID: 0}
-  newconnectRef: {fileID: 0}
+  connectRef1: {fileID: 0}
+  connectRef2: {fileID: 0}
+  connectRef1Speed: 0
+  connectRef2Speed: 0
+  flip: 0
+  carTag: 
+  pathc: {fileID: 0}
+  pathg: {fileID: 0}
+  carModel: {fileID: 0}
+  path_s: {fileID: 0}
+  path_f: {fileID: 0}
+  switched: 0
 --- !u!54 &3898140334937328912
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -201,3 +212,16 @@ CapsuleCollider:
   m_Height: 1.6096172
   m_Direction: 2
   m_Center: {x: -0.10425484, y: -0.016053319, z: 0.025561333}
+--- !u!114 &2294368500450952171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3898140334937328938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 35d9dfd4a9c997141b9ecfb06fb02083, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  e: 0
