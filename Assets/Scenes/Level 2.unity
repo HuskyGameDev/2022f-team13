@@ -920,7 +920,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5002667484895525896, guid: 1757ca3cfd5389d49b576eeaba3e0749, type: 3}
       propertyPath: m_Name
-      value: Train Station
+      value: Bricks Station
       objectReference: {fileID: 0}
     - target: {fileID: 5002667484895525897, guid: 1757ca3cfd5389d49b576eeaba3e0749, type: 3}
       propertyPath: m_RootOrder
@@ -1114,7 +1114,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 5002667484895525896, guid: 1757ca3cfd5389d49b576eeaba3e0749, type: 3}
       propertyPath: m_Name
-      value: Train Station (1)
+      value: Logs Station
       objectReference: {fileID: 0}
     - target: {fileID: 5002667484895525897, guid: 1757ca3cfd5389d49b576eeaba3e0749, type: 3}
       propertyPath: m_RootOrder
