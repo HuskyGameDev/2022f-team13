@@ -34,7 +34,7 @@ public class Pather : MonoBehaviour
     public float connectRef2Speed;
     float connectRef1SpeedPrev = 0;
     float connectRef2SpeedPrev = 0;
-    public float flip;
+    public bool flip;
     public GameObject trainModel;
     public float dist;
     public GameObject shortest;
@@ -44,7 +44,6 @@ public class Pather : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        flip = 1;
         trainModel = this.gameObject.transform.GetChild(0).gameObject;
         oldDistanceTravelled = 0;
         totalDistanceTravelled = 0;
@@ -160,15 +159,20 @@ public class Pather : MonoBehaviour
                 bool connect1 = (connectRef1 != null); //These will work as catch variables to avoid errors
                 bool connect2 = (connectRef2 != null);
 
+                bool flip1 = false;
+                bool flip2 = false;
+
                 if (connect1)
                 {
                     if (connectRef1.CompareTag("Train"))
                     {
                         connectRef1Speed = connectRef1.GetComponent<Pather>().train_speed;
+                        flip1 = connectRef1.GetComponent<Pather>().flip;
                     }
                     else if (connectRef1.CompareTag("Coal")) 
                     {
                         connectRef1Speed = connectRef1.GetComponent<CarScript>().car_speed;
+                        flip1 = connectRef1.GetComponent<CarScript>().flip;
                     }
                 }
 
@@ -177,10 +181,12 @@ public class Pather : MonoBehaviour
                     if (connectRef2.CompareTag("Train"))
                     {
                         connectRef2Speed = connectRef2.GetComponent<Pather>().train_speed;
+                        flip2 = connectRef2.GetComponent<Pather>().flip;
                     }
                     else if (connectRef2.CompareTag("Coal"))
                     {
                         connectRef2Speed = connectRef2.GetComponent<CarScript>().car_speed;
+                        flip2 = connectRef2.GetComponent<CarScript>().flip;
                     }
                 }
 
@@ -189,12 +195,26 @@ public class Pather : MonoBehaviour
                 if (Mathf.Abs(connectRef1Speed - connectRef1SpeedPrev) > Mathf.Abs(connectRef2Speed - connectRef2SpeedPrev))
                 {
                     //Follow ref1
-                    train_speed = connectRef1Speed;
+                    if (flip || flip1)
+                    {
+                        train_speed = -connectRef1Speed;
+                    } else
+                    {
+                        train_speed = connectRef1Speed;
+                    }
+                    
                 }
                 else if (Mathf.Abs(connectRef1Speed - connectRef1SpeedPrev) < Mathf.Abs(connectRef2Speed - connectRef2SpeedPrev))
                 {
                     //follow ref2
-                    train_speed = connectRef2Speed;
+                    if (flip || flip2)
+                    {
+                        train_speed = -connectRef2Speed;
+                    }
+                    else
+                    {
+                        train_speed = connectRef2Speed;
+                    }
                 }
                 else
                 {
@@ -202,7 +222,7 @@ public class Pather : MonoBehaviour
                     //-Gandhi, probably
 
                     //In actuality, this case is when the rates of change between all parties are equal, we want to take speed that is lowest in this case for reasons, I think...
-                    train_speed = Mathf.Abs(connectRef1Speed) > Mathf.Abs(connectRef2Speed) ? connectRef1Speed : connectRef2Speed;
+                    
                 }
                 
                
@@ -247,11 +267,13 @@ public class Pather : MonoBehaviour
                     distanceTravelled = pathc.path.GetClosestDistanceAlongPath(transform.position);
                     setPathEnds();
                     //Do Something here that resets distance travelled in order to make it work.
-                    flip = 1;
                     if (distanceTravelled < 1)
                     {
                         trainModel.transform.Rotate(trainModel.transform.rotation.x, trainModel.transform.rotation.y, trainModel.transform.rotation.z - 180f, Space.Self);
-                        flip = -1;
+                        flip = true;
+                    } else
+                    {
+                        flip = false;
                     }
 
                     switched = true;
@@ -267,6 +289,10 @@ public class Pather : MonoBehaviour
                     if (distanceTravelled > 1)
                     {
                         trainModel.transform.Rotate(trainModel.transform.rotation.x, trainModel.transform.rotation.y, trainModel.transform.rotation.z + 180f, Space.Self);
+                        flip = true;
+                    } else
+                    {
+                        flip = false;
                     }
                     switched = true;
                 }

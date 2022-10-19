@@ -23,7 +23,7 @@ public class CarScript : MonoBehaviour
     public float connectRef2Speed;
     float connectRef1SpeedPrev = 0;
     float connectRef2SpeedPrev = 0;
-    public float flip;
+    public bool flip;
     public string carTag;
 
     //Track Switching Stuff
@@ -38,7 +38,6 @@ public class CarScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        flip = 1;
         carModel = this.gameObject.transform.GetChild(0).gameObject;
         attached = false;
         if (currentPath != null)
@@ -77,6 +76,9 @@ public class CarScript : MonoBehaviour
                 bool connect1 = (connectRef1 != null); //These will work as catch variables to avoid errors
                 bool connect2 = (connectRef2 != null);
 
+                bool flip1 = false;
+                bool flip2 = false;
+
                 if (connect1)
                 {
                     if (connectRef1.CompareTag("Train"))
@@ -106,12 +108,26 @@ public class CarScript : MonoBehaviour
                 if (Mathf.Abs(connectRef1Speed - connectRef1SpeedPrev) > Mathf.Abs(connectRef2Speed - connectRef2SpeedPrev))
                 {
                     //Follow ref1
-                    car_speed = connectRef1Speed;
+                    if(flip || flip1)
+                    {
+                        car_speed = -connectRef1Speed;
+                    } else
+                    {
+                        car_speed = connectRef1Speed;
+                    }
+                    
                 }
                 else if (Mathf.Abs(connectRef1Speed - connectRef1SpeedPrev) < Mathf.Abs(connectRef2Speed - connectRef2SpeedPrev))
                 {
                     //follow ref2
-                    car_speed = connectRef2Speed;
+                    if (flip || flip1)
+                    {
+                        car_speed = -connectRef2Speed;
+                    }
+                    else
+                    {
+                        car_speed = connectRef2Speed;
+                    }
                 }
                 else
                 {
@@ -169,6 +185,11 @@ public class CarScript : MonoBehaviour
                     if (currentPosition < 1)
                     {
                         carModel.transform.Rotate(carModel.transform.rotation.x, carModel.transform.rotation.y, carModel.transform.rotation.z - 180f, Space.Self);
+                        flip = true;
+                    }
+                    else
+                    {
+                        flip = false;
                     }
                     switched = true;
                 }
@@ -183,6 +204,11 @@ public class CarScript : MonoBehaviour
                     if (currentPosition > 1)
                     {
                         carModel.transform.Rotate(carModel.transform.rotation.x, carModel.transform.rotation.y, carModel.transform.rotation.z + 180f, Space.Self);
+                        flip = true;
+                    }
+                    else
+                    {
+                        flip = false;
                     }
                     switched = true;
                 }
