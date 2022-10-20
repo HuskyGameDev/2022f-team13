@@ -108,26 +108,15 @@ public class CarScript : MonoBehaviour
                 if (Mathf.Abs(connectRef1Speed - connectRef1SpeedPrev) > Mathf.Abs(connectRef2Speed - connectRef2SpeedPrev))
                 {
                     //Follow ref1
-                    if(flip || flip1)
-                    {
-                        car_speed = -connectRef1Speed;
-                    } else
-                    {
-                        car_speed = connectRef1Speed;
-                    }
+                    car_speed = connectRef1Speed;
+                    
                     
                 }
                 else if (Mathf.Abs(connectRef1Speed - connectRef1SpeedPrev) < Mathf.Abs(connectRef2Speed - connectRef2SpeedPrev))
                 {
                     //follow ref2
-                    if (flip || flip1)
-                    {
-                        car_speed = -connectRef2Speed;
-                    }
-                    else
-                    {
-                        car_speed = connectRef2Speed;
-                    }
+                    car_speed = connectRef2Speed;
+                    
                 }
                 else
                 {
@@ -135,7 +124,7 @@ public class CarScript : MonoBehaviour
                     //-Gandhi, probably
 
                     //In actual functionality, this will not change the speed of the car because both sides of it will be equal meaning we are likely going the same speed as both of them.
-                    car_speed = Mathf.Abs(connectRef1Speed) > Mathf.Abs(connectRef2Speed) ? connectRef1Speed : connectRef2Speed;
+                    //car_speed = Mathf.Abs(connectRef1Speed) > Mathf.Abs(connectRef2Speed) ? connectRef1Speed : connectRef2Speed;
                 }
                 
                 
@@ -217,7 +206,7 @@ public class CarScript : MonoBehaviour
             transform.position = pathc.path.GetPointAtDistance(currentPosition, endOfPathInstruction);
             transform.rotation = pathc.path.GetRotationAtDistance(currentPosition, endOfPathInstruction);
 
-            Debug.Log("Car: " + Time.deltaTime + "\n");
+            //Debug.Log("Car: " + Time.deltaTime + "\n");
 
         }
     }
