@@ -136,10 +136,10 @@ public class Pather : MonoBehaviour
                 
                 if(GameObject.ReferenceEquals(shortest, path_f))
                 {
-                    dist = 10;
+                    dist = Mathf.Infinity;
                 } else if (GameObject.ReferenceEquals(shortest, path_s))
                 {
-                    dist = -10;
+                    dist = -Mathf.Infinity;
                 } else
                 {
                     dist = pathc.path.GetClosestDistanceAlongPath(Camera.main.ScreenToWorldPoint(Input.mousePosition));
