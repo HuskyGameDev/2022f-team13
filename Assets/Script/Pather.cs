@@ -195,26 +195,15 @@ public class Pather : MonoBehaviour
                 if (Mathf.Abs(connectRef1Speed - connectRef1SpeedPrev) > Mathf.Abs(connectRef2Speed - connectRef2SpeedPrev))
                 {
                     //Follow ref1
-                    if (flip || flip1)
-                    {
-                        train_speed = -connectRef1Speed;
-                    } else
-                    {
-                        train_speed = connectRef1Speed;
-                    }
+                    train_speed = connectRef1Speed;
+                    
                     
                 }
                 else if (Mathf.Abs(connectRef1Speed - connectRef1SpeedPrev) < Mathf.Abs(connectRef2Speed - connectRef2SpeedPrev))
                 {
                     //follow ref2
-                    if (flip || flip2)
-                    {
-                        train_speed = -connectRef2Speed;
-                    }
-                    else
-                    {
-                        train_speed = connectRef2Speed;
-                    }
+                    train_speed = connectRef2Speed;
+                    
                 }
                 else
                 {
@@ -301,6 +290,7 @@ public class Pather : MonoBehaviour
 
             if (Input.GetMouseButton(1) && (Vector2.Distance(transform.position, Camera.main.ScreenToWorldPoint(Input.mousePosition)) < 0.5))
             {
+                //Fix this to account for the shared info on the other objects
                 attached = false;
                 connectRef1 = null;
                 connectRef2 = null;
