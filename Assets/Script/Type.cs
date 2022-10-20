@@ -6,6 +6,7 @@ public class Type : MonoBehaviour
 {
     public enum element
     {
+        Train,
         Coal,
         Nuke,
         Brick,
@@ -13,7 +14,8 @@ public class Type : MonoBehaviour
         Bullets,
         Pigs,
         Cows,
-        Train
+        Iron
+        
 
     };
     public element e;
