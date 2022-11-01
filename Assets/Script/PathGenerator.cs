@@ -49,7 +49,7 @@ namespace PathCreation.Examples
 
 
 
-            if (allPaths.Length <= 0 && gm.paths.Length > 0)
+            if (allPaths.Length != gm.paths.Length && gm.paths.Length > 0)
             {
                 //Iterate through all the waypoints in the list of all paths and determine if any of them match waypoints on this path.
                 allPaths = gm.paths;
