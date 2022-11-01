@@ -76,8 +76,8 @@ public class CarScript : MonoBehaviour
                 bool connect1 = (connectRef1 != null); //These will work as catch variables to avoid errors
                 bool connect2 = (connectRef2 != null);
 
-                bool flip1 = false;
-                bool flip2 = false;
+                //bool flip1 = false;
+                //bool flip2 = false;
 
                 if (connect1)
                 {
