@@ -6,7 +6,8 @@ namespace PathCreation.Examples
     // Depending on the end of path instruction, will either loop, reverse, or stop at the end of the path.
     public class TrainScript2 : MonoBehaviour
     {
-        public PathCreator pathCreator;
+        public GameObject path;
+        PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
         public float speed = 5;
         public float distanceTravelled;
@@ -27,6 +28,7 @@ namespace PathCreation.Examples
         bool hover;
 
         void Start() {
+            pathCreator = path.GetComponent<PathCreator>();
             if (pathCreator != null)
             {
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
@@ -106,10 +108,11 @@ namespace PathCreation.Examples
                 //When not kinematic, i.e. when being pulled
 
                 //Calculate some bull to make this rotate with add torque so it looks pretty
-                
-                rb.AddTorque(Quaternion.FromToRotation(rb.rotation.eulerAngles, pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)).eulerAngles).eulerAngles * 100, ForceMode.Impulse);
+
+                //rb.AddTorque(Quaternion.FromToRotation(rb.rotation.eulerAngles, pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)).eulerAngles).eulerAngles * 10, ForceMode.Impulse);
+                rb.MoveRotation(pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position), endOfPathInstruction) * Quaternion.Euler(x, y, z));
                 //rb.MoveRotation(pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position), endOfPathInstruction) * Quaternion.Euler(x, y, z));
-                rb.AddForce((pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction) - rb.position) * 10, ForceMode.VelocityChange); //Force Keeping Train on Track
+                rb.AddForce((pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
             }
             
 
@@ -127,9 +130,10 @@ namespace PathCreation.Examples
         {
             if (collision.gameObject.GetComponent<Rigidbody>() != null && !hasJoint)
             {
-                SpringJoint j;
-                j = gameObject.AddComponent<SpringJoint>();
+                HingeJoint j;
+                j = gameObject.AddComponent<HingeJoint>();
                 j.connectedBody = collision.rigidbody;
+                j.axis = new Vector3(0, 0, 1);
                 j.enableCollision = true;
 
                 hasJoint = true;

@@ -32,7 +32,8 @@ public class CarScript2 : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddTorque(Quaternion.FromToRotation(rb.rotation.eulerAngles, pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)).eulerAngles).eulerAngles * 100, ForceMode.Impulse);
+        //rb.AddTorque(Quaternion.FromToRotation(rb.rotation.eulerAngles, pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)).eulerAngles).eulerAngles * 10, ForceMode.Impulse);
+        rb.MoveRotation(pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position), endOfPathInstruction) * Quaternion.Euler(x, y, z));
         rb.AddForce((pathCreator.path.GetPointAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position), endOfPathInstruction) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
     }
 
@@ -40,9 +41,10 @@ public class CarScript2 : MonoBehaviour
     {
         if (collision.gameObject.GetComponent<Rigidbody>() != null && !hasJoint)
         {
-            SpringJoint j;
-            j = gameObject.AddComponent<SpringJoint>();
+            HingeJoint j;
+            j = gameObject.AddComponent<HingeJoint>();
             j.connectedBody = collision.rigidbody;
+            j.axis = new Vector3(0, 0, 1);
             j.enableCollision = true;
 
             hasJoint = true;

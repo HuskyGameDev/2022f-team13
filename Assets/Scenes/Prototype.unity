@@ -300,14 +300,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 134083261}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalRotation: {x: -0.17364825, y: 0, z: 0, w: 0.9848078}
+  m_LocalPosition: {x: 0, y: -3.34, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 4
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: -20, y: 0, z: 0}
 --- !u!1 &188789294
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,7 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684c2c697013e2542952c89a9461a029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathCreator: {fileID: 242278133}
+  path: {fileID: 242278131}
   endOfPathInstruction: 2
   speed: 5
   distanceTravelled: 0
@@ -692,13 +692,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 940674882}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 10
-  m_AngularDrag: 100
+  m_Mass: 200
+  m_Drag: 20
+  m_AngularDrag: 10
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 48
   m_CollisionDetection: 2
 --- !u!23 &940674886
 MeshRenderer:
@@ -3052,7 +3052,7 @@ MeshRenderer:
   - {fileID: 2776071431046421379, guid: cc39191369debec44a86b68fc3369e15, type: 3}
   - {fileID: -8466013217896154853, guid: cc39191369debec44a86b68fc3369e15, type: 3}
   - {fileID: 7239298065659308923, guid: cc39191369debec44a86b68fc3369e15, type: 3}
-  - {fileID: 561622078051213871, guid: cc39191369debec44a86b68fc3369e15, type: 3}
+  - {fileID: -600333134929341362, guid: 939c3acd7a6b9814b8ff760fbfb60fcf, type: 3}
   - {fileID: 8700421715103192860, guid: cc39191369debec44a86b68fc3369e15, type: 3}
   m_StaticBatchInfo:
     firstSubMesh: 0
@@ -3458,13 +3458,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2633101910034853656}
   serializedVersion: 2
-  m_Mass: 20
-  m_Drag: 10
-  m_AngularDrag: 100
+  m_Mass: 200
+  m_Drag: 20
+  m_AngularDrag: 10
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 48
   m_CollisionDetection: 2
 --- !u!65 &8412960867405426360
 BoxCollider:
@@ -3491,7 +3491,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 684c2c697013e2542952c89a9461a029, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pathCreator: {fileID: 242278133}
+  path: {fileID: 242278131}
   endOfPathInstruction: 2
   speed: 5
   distanceTravelled: 0
@@ -3531,13 +3531,13 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3392920343592152684}
   serializedVersion: 2
-  m_Mass: 20
+  m_Mass: 150
   m_Drag: 10
-  m_AngularDrag: 100
+  m_AngularDrag: 10
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
-  m_Constraints: 112
+  m_Constraints: 48
   m_CollisionDetection: 2
 --- !u!114 &9177329412871319491
 MonoBehaviour:

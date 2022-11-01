@@ -8,7 +8,7 @@ namespace PathCreation.Examples
     {
         public PathCreator pathCreator;
         public EndOfPathInstruction endOfPathInstruction;
-
+        float distanceTravelled;
         void Start() {
             if (pathCreator != null)
             {
@@ -19,10 +19,12 @@ namespace PathCreation.Examples
 
         void Update()
         {
+            distanceTravelled += 5 * Time.deltaTime;
             if (pathCreator != null)
             {
-                //original transform.position = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-                //oringinal transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
+                Vector3 thing = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
+                transform.position = new Vector3(thing.x, thing.y, -.5f);
+                transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction) * Quaternion.Euler(180, 90, 90);
             }
         }
 
