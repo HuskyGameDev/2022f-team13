@@ -14,7 +14,10 @@ public class Type : MonoBehaviour
         Bullets,
         Pigs,
         Cows,
-        Iron
+        Iron,
+        Car,
+        Gold
+    
         
 
     };
