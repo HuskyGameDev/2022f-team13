@@ -507,7 +507,7 @@ PrefabInstance:
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: gm
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2027678641}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: carTag
       value: Logs
@@ -3637,7 +3637,7 @@ PrefabInstance:
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: gm
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2027678641}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: carTag
       value: Bricks

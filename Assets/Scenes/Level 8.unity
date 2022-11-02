@@ -785,7 +785,7 @@ PrefabInstance:
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: gm
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2027678641}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: carTag
       value: Coal
@@ -1033,7 +1033,7 @@ PrefabInstance:
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: gm
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2027678641}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: carTag
       value: Bricks
@@ -1133,7 +1133,7 @@ PrefabInstance:
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: gm
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2027678641}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: carTag
       value: Coal
@@ -2162,7 +2162,7 @@ PrefabInstance:
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: gm
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 2027678641}
     - target: {fileID: 3898140334937328917, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: carTag
       value: Logs
@@ -2311,7 +2311,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3398008809595751407, guid: 3ef5ef317c5ebd24d8a3ab926f3608cf, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 3398008809595751407, guid: 3ef5ef317c5ebd24d8a3ab926f3608cf, type: 3}
       propertyPath: m_LocalPosition.y
