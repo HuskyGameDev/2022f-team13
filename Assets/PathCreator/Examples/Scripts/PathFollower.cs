@@ -23,8 +23,8 @@ namespace PathCreation.Examples
             if (pathCreator != null)
             {
                 Vector3 thing = pathCreator.path.GetPointAtDistance(distanceTravelled, endOfPathInstruction);
-                transform.position = new Vector3(thing.x, thing.y, -.5f);
-                transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction) * Quaternion.Euler(180, 90, 90);
+                transform.position = new Vector3(thing.x, thing.y, thing.z);
+                transform.rotation = pathCreator.path.GetRotationAtDistance(distanceTravelled, endOfPathInstruction);
             }
         }
 
