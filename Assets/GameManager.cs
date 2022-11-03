@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     private GameObject allStations;
     private int numStations;
     private int correctRails;
+    public float totalDistanceTravelled = 0;
 
     // Start is called before the first frame update
     void Start()
