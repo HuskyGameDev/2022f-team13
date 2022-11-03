@@ -19,7 +19,7 @@ public class Type : MonoBehaviour
         Gold,
         Blue,
         Maroon,
-        
+        flower,
     
         
 
