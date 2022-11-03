@@ -975,7 +975,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryText: {fileID: 1127760959}
-  levelNumber: 5
+  levelNumber: 6
 --- !u!224 &249310685
 RectTransform:
   m_ObjectHideFlags: 0
