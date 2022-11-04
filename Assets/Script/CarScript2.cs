@@ -18,6 +18,9 @@ public class CarScript2 : MonoBehaviour
     public float rate = 10;
 
     public float x, y, z;
+    public float zoffset;
+    public bool frontCon;
+    public bool rearCon;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,25 +53,91 @@ public class CarScript2 : MonoBehaviour
     void FixedUpdate()
     {
         Vector3 pos = pathCreator.path.GetClosestPointOnPath(rb.position);
-        rb.AddForce((new Vector3(pos.x, pos.y, -1) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
+        rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
     }
 
     void OnCollisionEnter(Collision collision)
     {
-        
-        if (collision.gameObject.GetComponent<Rigidbody>() != null && !hasJoint)
-        {
-            HingeJoint j;
-            j = gameObject.AddComponent<HingeJoint>();
-            j.axis = transform.forward;
-            j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
-            j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
-            j.connectedBody = collision.rigidbody;
-            j.enableCollision = true;
-            j.enablePreprocessing = false;
 
-            hasJoint = true;
+        //This is what I get for making two Scripts
+        if (collision.gameObject.GetComponent<TrainScript2>() != null)
+        {
+            TrainScript2 temp = collision.gameObject.GetComponent<TrainScript2>();
+            if ((temp.rearCon && transform.InverseTransformPoint(collision.contacts[1].point).y < 0) || (temp.frontCon && transform.InverseTransformPoint(collision.contacts[1].point).y > 0))
+            {
+                //Do not connect, this space is already taken
+            }
+            else
+            {
+                if (collision.gameObject.GetComponent<Rigidbody>() != null && !frontCon && transform.InverseTransformPoint(collision.contacts[0].point).y > 0)
+                {
+                    HingeJoint j;
+                    j = gameObject.AddComponent<HingeJoint>();
+                    j.axis = transform.forward;
+                    j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
+                    j.connectedBody = collision.rigidbody;
+                    j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
+                    j.enableCollision = true;
+                    j.enablePreprocessing = false;
+
+                    frontCon = true;
+                }
+                else if (collision.gameObject.GetComponent<Rigidbody>() != null && !rearCon && transform.InverseTransformPoint(collision.contacts[0].point).y < 0)
+                {
+                    HingeJoint j;
+                    j = gameObject.AddComponent<HingeJoint>();
+                    j.axis = transform.forward;
+                    j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
+                    j.connectedBody = collision.rigidbody;
+                    j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
+                    j.enableCollision = true;
+                    j.enablePreprocessing = false;
+
+                    rearCon = true;
+                }
+            }
+
+
         }
-        
+        else if (collision.gameObject.GetComponent<CarScript2>() != null)
+        {
+            CarScript2 temp = collision.gameObject.GetComponent<CarScript2>();
+            if ((temp.rearCon && transform.InverseTransformPoint(collision.contacts[1].point).y < 0) || (temp.frontCon && transform.InverseTransformPoint(collision.contacts[1].point).y > 0))
+            {
+                //Do not connect, this space is already taken
+            }
+            else
+            {
+                if (collision.gameObject.GetComponent<Rigidbody>() != null && !frontCon && transform.InverseTransformPoint(collision.contacts[0].point).y > 0)
+                {
+                    HingeJoint j;
+                    j = gameObject.AddComponent<HingeJoint>();
+                    j.axis = transform.forward;
+                    j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
+                    j.connectedBody = collision.rigidbody;
+                    j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
+                    j.enableCollision = true;
+                    j.enablePreprocessing = false;
+
+                    frontCon = true;
+                }
+                else if (collision.gameObject.GetComponent<Rigidbody>() != null && !rearCon && transform.InverseTransformPoint(collision.contacts[0].point).y < 0)
+                {
+                    HingeJoint j;
+                    j = gameObject.AddComponent<HingeJoint>();
+                    j.axis = transform.forward;
+                    j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
+                    j.connectedBody = collision.rigidbody;
+                    j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
+                    j.enableCollision = true;
+                    j.enablePreprocessing = false;
+
+                    rearCon = true;
+                }
+            }
+        }
+
+
+
     }
 }

@@ -16,7 +16,12 @@ public class Type : MonoBehaviour
         Cows,
         Iron,
         Car,
-        Gold
+        Oranges,
+        Blue,
+        Maroon,
+        Flower,
+        Green,
+
     
         
 
