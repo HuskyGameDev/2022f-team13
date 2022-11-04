@@ -126,8 +126,6 @@ public class Pather : MonoBehaviour
                         shortest = path;
                         shortestDist = calc;
                     }
-                    Debug.Log(path.name + ", " + calc);
-
                 }
                 //Calculate our "distance" from the closest matching point
                 //Needs to be some kind of Search I guess, from the currentPath to the Desired Path.
