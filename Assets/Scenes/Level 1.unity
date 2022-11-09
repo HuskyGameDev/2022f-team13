@@ -679,6 +679,26 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 90
       objectReference: {fileID: 0}
+    - target: {fileID: 8957194183785302342, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957194183785302343, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957194183785302348, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: gm
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 8957194183785302348, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: path
+      value: 
+      objectReference: {fileID: 877012637}
+    - target: {fileID: 8957194183785302348, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: start
+      value: 0.2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
 --- !u!1 &620116853
@@ -1804,17 +1824,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1507250811}
   m_CullTransparentMesh: 1
---- !u!114 &1512721021 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 3398008808686195321, guid: 3ef5ef317c5ebd24d8a3ab926f3608cf, type: 3}
-  m_PrefabInstance: {fileID: 1943534319}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 877012637}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d556894cea2d01743bb390fd57a837e3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1544690337
 GameObject:
   m_ObjectHideFlags: 0
@@ -2345,7 +2354,7 @@ PrefabInstance:
     - target: {fileID: 3398008808686195321, guid: 3ef5ef317c5ebd24d8a3ab926f3608cf, type: 3}
       propertyPath: allPaths.Array.data[0]
       value: 
-      objectReference: {fileID: 1512721021}
+      objectReference: {fileID: 0}
     - target: {fileID: 3398008808686195321, guid: 3ef5ef317c5ebd24d8a3ab926f3608cf, type: 3}
       propertyPath: waypoints.Array.data[3]
       value: 
@@ -3041,6 +3050,7 @@ MonoBehaviour:
   bricks: 1
   logs: 1
   paths: []
+  totalDistanceTravelled: 0
 --- !u!1 &2130267264
 GameObject:
   m_ObjectHideFlags: 0
