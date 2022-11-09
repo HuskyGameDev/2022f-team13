@@ -46,6 +46,11 @@ namespace PathCreation.Examples
         void Start() {
             pathCreator = path.GetComponent<PathCreator>();
             pathGen = path.GetComponent<PathGenerator>();
+            if(gm == null)
+            {
+                gm = FindObjectOfType<GameManager>();
+            }
+
             if (pathCreator != null)
             {
                 // Subscribed to the pathUpdated event so that we're notified if the path changes during the game
@@ -54,7 +59,8 @@ namespace PathCreation.Examples
             //I added
             rb = gameObject.GetComponent<Rigidbody>();
             float startdist = pathCreator.path.GetClosestDistanceAlongPath(pathCreator.path.GetPointAtTime(start));
-            rb.position = pathCreator.path.GetPointAtDistance(startdist);
+            Vector3 temp = pathCreator.path.GetPointAtDistance(startdist);
+            rb.position = new Vector3(temp.x, temp.y, zoffset);
             rb.rotation = pathCreator.path.GetRotationAtDistance(startdist) * Quaternion.Euler(x, y, z);
             prevDist = startdist;
             distanceTravelled = prevDist;
@@ -66,7 +72,7 @@ namespace PathCreation.Examples
             if (hover && Input.GetMouseButtonDown(0))
             {
                 held = true;
-                distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(rb.position);
+                //distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(rb.position);
             }
             //If clicked, separate the cars
             //Not Finished, Holy is this super fucking sketchy
@@ -99,6 +105,7 @@ namespace PathCreation.Examples
                 frontCon = false;
                 rearCon = false;
             }
+            
             if(!Input.GetMouseButton(0))
             {
                 held = false;
@@ -183,6 +190,7 @@ namespace PathCreation.Examples
                 distanceTravelled += train_speed * Time.deltaTime;
 
                 //Step 2: Get it to apply the extra value to the end of the path
+                
                 if (distanceTravelled > dist_end)
                 {
                     //Handle the situation where the train will go beyond the end of the path
@@ -233,6 +241,7 @@ namespace PathCreation.Examples
                 {
                     //As Gandhi Most Definitely Said, "Let it Rock"
                 }
+                
 
                 test = pathCreator.path.GetPointAtDistance(distanceTravelled);
             }
@@ -252,6 +261,7 @@ namespace PathCreation.Examples
                     pathGen = path.GetComponent<PathGenerator>();
                     pathCreator = path.GetComponent<PathCreator>();
                 }
+                
             }
             
         }
@@ -263,16 +273,9 @@ namespace PathCreation.Examples
             //Use these for when held and train is kinematic
             if (rb.isKinematic)
             {
-                /*
-                Vector3 rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)).eulerAngles;
-                if (Mathf.Abs(Vector3.Angle(rb.rotation.eulerAngles, rot)) < Mathf.Abs(Vector3.Angle(rb.rotation.eulerAngles, new Vector3(rot.x, rot.y, rot.z + 180))))
-                {
-                    rb.MoveRotation(Quaternion.Euler(rot.x, rot.y, rot.z + 180));
-                } else
-                {
-                    
-                }
-                */
+                //Switch this to rotate towards in order to create the motion that we want.
+                //Maybe figure out how to average rotation across a corner to create the look that the tracks are good
+                //Debug.Log(rb.gameObject.name);
                 Quaternion rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
                 if (Quaternion.Angle(rb.rotation, rot) < Quaternion.Angle(rb.rotation, rot * Quaternion.Euler(0, 0, 180)))
                 {
@@ -287,28 +290,25 @@ namespace PathCreation.Examples
 
                 rb.MovePosition(new Vector3(test.x, test.y, zoffset));
 
+                //rb.AddForce((new Vector3(test.x, test.y, zoffset) - rb.position) * 10, ForceMode.VelocityChange);
+
                 //Do a check here to see if it needs to move onto a different path
 
 
-            }
-            else
+            } else
             {
                 //When not kinematic, i.e. when being pulled
 
-                //Calculate some bull to make this rotate with add torque so it looks pretty
-                
-                //rb.AddTorque(Quaternion.FromToRotation(rb.rotation.eulerAngles, pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)).eulerAngles).eulerAngles * 10, ForceMode.Impulse);
-                Vector3 pos = pathCreator.path.GetClosestPointOnPath(rb.position);
+                Vector3 pos = pathCreator.path.GetPointAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position));
+                //Debug.Log(rb.gameObject.name + " " + (new Vector3(pos.x, pos.y, zoffset) - rb.position));
                 rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
+                //rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
 
-                if(gameObject.GetComponent<HingeJoint>() == null)
-                {
-                    rb.rotation = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
-                }
+                
             }
 
 
-
+            //Debug.Log(rb.gameObject.name + " " + held);
             AdjustDistance();
 
         }
@@ -320,13 +320,13 @@ namespace PathCreation.Examples
 
         void OnCollisionEnter(Collision collision)
         {
-
+            
             //This is what I get for making two Scripts
             if (collision.gameObject.GetComponent<Rigidbody>() != null && !frontCon && transform.InverseTransformPoint(collision.contacts[0].point).y > 0)
             {
                 HingeJoint j;
                 j = gameObject.AddComponent<HingeJoint>();
-                j.axis = transform.forward;
+                j.axis = -transform.forward;
                 j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
                 j.connectedBody = collision.rigidbody;
                 j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
@@ -348,6 +348,7 @@ namespace PathCreation.Examples
 
                 rearCon = true;
             }
+            
         }
 
         void OnMouseOver()

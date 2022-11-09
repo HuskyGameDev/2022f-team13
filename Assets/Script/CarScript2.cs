@@ -29,7 +29,8 @@ public class CarScript2 : MonoBehaviour
         pathGen = path_Ben.GetComponent<PathGenerator>();
         pathCreator = path_Ben.GetComponent<PathCreator>();
         float startdist = pathCreator.path.GetClosestDistanceAlongPath(pathCreator.path.GetPointAtTime(start));
-        rb.position = pathCreator.path.GetPointAtDistance(startdist);
+        Vector3 temp = pathCreator.path.GetPointAtDistance(startdist);
+        rb.position = new Vector3(temp.x, temp.y, zoffset);
         rb.rotation = pathCreator.path.GetRotationAtDistance(startdist) * Quaternion.Euler(x, y, z);
     }
 
@@ -52,8 +53,15 @@ public class CarScript2 : MonoBehaviour
 
     void FixedUpdate()
     {
-        Vector3 pos = pathCreator.path.GetClosestPointOnPath(rb.position);
-        rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
+        if(rb.isKinematic)
+        {
+
+        } else
+        {
+            Vector3 pos = pathCreator.path.GetClosestPointOnPath(rb.position);
+            rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 10, ForceMode.VelocityChange); //Force Keeping Train on Track
+        }
+        
     }
 
     void OnCollisionEnter(Collision collision)
