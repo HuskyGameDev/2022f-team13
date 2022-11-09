@@ -12,6 +12,7 @@ public class CarScript2 : MonoBehaviour
     PathCreator pathCreator;
     PathGenerator pathGen;
     public EndOfPathInstruction endOfPathInstruction;
+    MeshCollider m;
 
     bool hasJoint;
     public float start;
@@ -28,10 +29,13 @@ public class CarScript2 : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
         pathGen = path_Ben.GetComponent<PathGenerator>();
         pathCreator = path_Ben.GetComponent<PathCreator>();
+        m = gameObject.GetComponent<MeshCollider>();
+        m.enabled = false;
         float startdist = pathCreator.path.GetClosestDistanceAlongPath(pathCreator.path.GetPointAtTime(start));
         Vector3 temp = pathCreator.path.GetPointAtDistance(startdist);
         rb.position = new Vector3(temp.x, temp.y, zoffset);
         rb.rotation = pathCreator.path.GetRotationAtDistance(startdist) * Quaternion.Euler(x, y, z);
+        m.enabled = true;
     }
 
     // Update is called once per frame
@@ -53,13 +57,12 @@ public class CarScript2 : MonoBehaviour
 
     void FixedUpdate()
     {
-        if(rb.isKinematic)
+       
+        Vector3 pos = pathCreator.path.GetClosestPointOnPath(rb.position);
+        rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 10, ForceMode.VelocityChange); //Force Keeping Train on Track
+        if (!frontCon && !rearCon)
         {
-
-        } else
-        {
-            Vector3 pos = pathCreator.path.GetClosestPointOnPath(rb.position);
-            rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 10, ForceMode.VelocityChange); //Force Keeping Train on Track
+            rb.rotation = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
         }
         
     }

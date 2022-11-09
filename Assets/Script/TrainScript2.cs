@@ -17,6 +17,7 @@ namespace PathCreation.Examples
         public float distanceTravelled;
         Vector3 moveVec;
         public Rigidbody rb;
+        MeshCollider m;
 
         public float smooth;
         float train_speed;
@@ -46,6 +47,8 @@ namespace PathCreation.Examples
         void Start() {
             pathCreator = path.GetComponent<PathCreator>();
             pathGen = path.GetComponent<PathGenerator>();
+            m = gameObject.GetComponent<MeshCollider>();
+            m.enabled = false;
             if(gm == null)
             {
                 gm = FindObjectOfType<GameManager>();
@@ -64,6 +67,7 @@ namespace PathCreation.Examples
             rb.rotation = pathCreator.path.GetRotationAtDistance(startdist) * Quaternion.Euler(x, y, z);
             prevDist = startdist;
             distanceTravelled = prevDist;
+            m.enabled = true;
         }
 
         void Update()
@@ -290,6 +294,7 @@ namespace PathCreation.Examples
 
                 rb.MovePosition(new Vector3(test.x, test.y, zoffset));
 
+                
                 //rb.AddForce((new Vector3(test.x, test.y, zoffset) - rb.position) * 10, ForceMode.VelocityChange);
 
                 //Do a check here to see if it needs to move onto a different path
@@ -303,8 +308,11 @@ namespace PathCreation.Examples
                 //Debug.Log(rb.gameObject.name + " " + (new Vector3(pos.x, pos.y, zoffset) - rb.position));
                 rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
                 //rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
+                if (!frontCon && !rearCon)
+                {
+                    rb.rotation = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
+                }
 
-                
             }
 
 
