@@ -27,16 +27,19 @@ public class SwitchTracks : MonoBehaviour
         {
             entrance = upper.GetComponent<PathGenerator>().path_s;
             enter = entrance.GetComponent<PathGenerator>();
+        } else if (enter != null)
+        {
+            if (enter.path_f.name == "Upper")
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z1), timeCount * speed);
+            }
+            else if (enter.path_f.name == "Lower")
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2), timeCount * speed);
+            }
         }
 
-        if (enter.path_f.name == "Upper")
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z1), timeCount * speed);
-        }
-        else if (enter.path_f.name == "Lower")
-        {
-            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2), timeCount * speed);
-        }
+       
 
         
         timeCount += Time.deltaTime;

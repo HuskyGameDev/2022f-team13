@@ -232,6 +232,7 @@ MonoBehaviour:
   entrance: {fileID: 0}
   z1: 0
   z2: 0
+  speed: 0.0015
 --- !u!1 &4390827899993225378
 GameObject:
   m_ObjectHideFlags: 0
