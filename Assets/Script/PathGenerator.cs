@@ -27,7 +27,7 @@ namespace PathCreation.Examples
 
         private PathCreator pathc;
 
-        void Start()
+        void Awake()
         {
             if (waypoints.Length > 0)
             {
@@ -73,6 +73,7 @@ namespace PathCreation.Examples
                         }
                     }
                 }
+                flag = true;
             }
         }
 

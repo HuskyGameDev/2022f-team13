@@ -23,11 +23,14 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1; //unpauses the game if it was paused
         distanceText.text = "Distance Traveled: 0";
         paths = GameObject.FindGameObjectsWithTag("Path");
-
         allStations = GameObject.Find("All TrainStations");
         numStations = allStations.GetComponent<TrainStationCount>().numOfTrainStations();
         correctRails = 0;
         Debug.Log(numStations);
+
+        //Time to do some order of operations bull in here in order to make the trains chill out
+        //I have no clue how I intend to do it, but it seriously needs to be considered
+
     }
 
     public void ChangeText(float addDistance)

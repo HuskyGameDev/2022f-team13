@@ -16,8 +16,12 @@ public class SwitchTracks : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        upper = this.transform.parent.Find("Upper").gameObject;
-        lower = this.transform.parent.Find("Lower").gameObject;
+        Component[] paths;
+        paths = transform.parent.GetComponentsInChildren<PathGenerator>();
+
+        //Assumption because something went wrong if not the case.
+        upper = paths[0].gameObject;
+        lower = paths[1].gameObject;
     }
 
     // Update is called once per frame
@@ -29,11 +33,19 @@ public class SwitchTracks : MonoBehaviour
             enter = entrance.GetComponent<PathGenerator>();
         } else if (enter != null)
         {
-            if (enter.path_f.name == "Upper")
+            if (GameObject.ReferenceEquals(enter.path_f, upper))
             {
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z1), timeCount * speed);
             }
-            else if (enter.path_f.name == "Lower")
+            else if (GameObject.ReferenceEquals(enter.path_f, lower))
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2), timeCount * speed);
+            }
+            else if (GameObject.ReferenceEquals(enter.path_s, upper))
+            {
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z1), timeCount * speed);
+            }
+            else if (GameObject.ReferenceEquals(enter.path_s, lower))
             {
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2), timeCount * speed);
             }
@@ -45,16 +57,23 @@ public class SwitchTracks : MonoBehaviour
         timeCount += Time.deltaTime;
     }
 
+    //I need to generalize this before problems start
     void OnMouseDown()
     {
         Debug.Log("Switching Tracks\n");
         
-        if(enter.path_f.name == "Upper")
+        if(GameObject.ReferenceEquals(enter.path_f, upper))
         {
             enter.path_f = lower;
-        } else if (enter.path_f.name == "Lower")
+        } else if (GameObject.ReferenceEquals(enter.path_f, lower))
         {
             enter.path_f = upper;
+        } else if (GameObject.ReferenceEquals(enter.path_s, upper))
+        {
+            enter.path_s = lower;
+        } else if (GameObject.ReferenceEquals(enter.path_s, lower))
+        {
+            enter.path_s = upper;
         }
         
     }

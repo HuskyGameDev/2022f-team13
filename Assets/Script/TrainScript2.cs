@@ -48,7 +48,7 @@ namespace PathCreation.Examples
             pathCreator = path.GetComponent<PathCreator>();
             pathGen = path.GetComponent<PathGenerator>();
             m = gameObject.GetComponent<MeshCollider>();
-            m.enabled = false;
+           m.enabled = false;
             if(gm == null)
             {
                 gm = FindObjectOfType<GameManager>();
@@ -273,6 +273,7 @@ namespace PathCreation.Examples
 
         void FixedUpdate()
         {
+            
             //rb.velocity = rb.rotation.eulerAngles * speed * Time.deltaTime;
 
             //Use these for when held and train is kinematic
@@ -305,13 +306,21 @@ namespace PathCreation.Examples
             {
                 //When not kinematic, i.e. when being pulled
 
-                Vector3 pos = pathCreator.path.GetPointAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position));
+               Vector3 pos = pathCreator.path.GetPointAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position));
                 //Debug.Log(rb.gameObject.name + " " + (new Vector3(pos.x, pos.y, zoffset) - rb.position));
                 rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
                 //rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
                 if (!frontCon && !rearCon)
                 {
-                    rb.rotation = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
+                    Quaternion rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
+                    if (Quaternion.Angle(rb.rotation, rot) < Quaternion.Angle(rb.rotation, rot * Quaternion.Euler(0, 0, 180)))
+                    {
+                        rb.MoveRotation(rot);
+                    }
+                    else
+                    {
+                        rb.MoveRotation(rot * Quaternion.Euler(0, 0, 180));
+                    }
                 }
 
             }
@@ -319,7 +328,7 @@ namespace PathCreation.Examples
 
             //Debug.Log(rb.gameObject.name + " " + held);
             AdjustDistance();
-
+            
         }
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path
         // is as close as possible to its position on the old path
@@ -327,6 +336,7 @@ namespace PathCreation.Examples
             //distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(transform.position);
         }
 
+        
         void OnCollisionEnter(Collision collision)
         {
             
@@ -359,7 +369,7 @@ namespace PathCreation.Examples
             }
             
         }
-
+        
         void OnMouseOver()
         {
             hover = true;
