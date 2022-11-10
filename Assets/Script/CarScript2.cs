@@ -35,12 +35,13 @@ public class CarScript2 : MonoBehaviour
         Vector3 temp = pathCreator.path.GetPointAtDistance(startdist);
         rb.position = new Vector3(temp.x, temp.y, zoffset);
         rb.rotation = pathCreator.path.GetRotationAtDistance(startdist) * Quaternion.Euler(x, y, z);
-        m.enabled = true;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
+        m.enabled = true;
         if (Vector3.Distance(pathCreator.path.GetClosestPointOnPath(rb.position), pathCreator.path.GetPointAtTime(1f)) < .01 && pathGen.path_f != null)
         {
             path_Ben = pathGen.path_f;

@@ -67,11 +67,12 @@ namespace PathCreation.Examples
             rb.rotation = pathCreator.path.GetRotationAtDistance(startdist) * Quaternion.Euler(x, y, z);
             prevDist = startdist;
             distanceTravelled = prevDist;
-            m.enabled = true;
+            
         }
 
         void Update()
         {
+            m.enabled = true;
             //If mouse is held on train, perform all this checking
             if (hover && Input.GetMouseButtonDown(0))
             {

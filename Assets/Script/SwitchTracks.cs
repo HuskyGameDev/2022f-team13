@@ -9,11 +9,15 @@ public class SwitchTracks : MonoBehaviour
     public GameObject lower;
     public GameObject entrance;
     private PathGenerator enter;
+    public float z1;
+    public float z2;
+    public float speed;
+    float timeCount;
     // Start is called before the first frame update
     void Start()
     {
-        upper = this.transform.parent.parent.Find("Upper").gameObject;
-        lower = this.transform.parent.parent.Find("Lower").gameObject;
+        upper = this.transform.parent.Find("Upper").gameObject;
+        lower = this.transform.parent.Find("Lower").gameObject;
     }
 
     // Update is called once per frame
@@ -24,6 +28,18 @@ public class SwitchTracks : MonoBehaviour
             entrance = upper.GetComponent<PathGenerator>().path_s;
             enter = entrance.GetComponent<PathGenerator>();
         }
+
+        if (enter.path_f.name == "Upper")
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z1), timeCount * speed);
+        }
+        else if (enter.path_f.name == "Lower")
+        {
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2), timeCount * speed);
+        }
+
+        
+        timeCount += Time.deltaTime;
     }
 
     void OnMouseDown()
