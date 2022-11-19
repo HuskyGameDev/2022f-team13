@@ -22,6 +22,7 @@ public class SwitchTracks : MonoBehaviour
         //Assumption because something went wrong if not the case.
         upper = paths[0].gameObject;
         lower = paths[1].gameObject;
+        transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2);
     }
 
     // Update is called once per frame
