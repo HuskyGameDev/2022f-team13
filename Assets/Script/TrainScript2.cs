@@ -77,7 +77,7 @@ namespace PathCreation.Examples
             if (hover && Input.GetMouseButtonDown(0))
             {
                 held = true;
-                //distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(rb.position);
+                distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(rb.position);
             }
             //If clicked, separate the cars
             //Not Finished, Holy is this super fucking sketchy
@@ -310,17 +310,14 @@ namespace PathCreation.Examples
                 //Debug.Log(rb.gameObject.name + " " + (new Vector3(pos.x, pos.y, zoffset) - rb.position));
                 rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
                 //rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
-                if (!frontCon && !rearCon)
+                Quaternion rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
+                if (Quaternion.Angle(rb.rotation, rot) < Quaternion.Angle(rb.rotation, rot * Quaternion.Euler(0, 0, 180)))
                 {
-                    Quaternion rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
-                    if (Quaternion.Angle(rb.rotation, rot) < Quaternion.Angle(rb.rotation, rot * Quaternion.Euler(0, 0, 180)))
-                    {
-                        rb.MoveRotation(rot);
-                    }
-                    else
-                    {
-                        rb.MoveRotation(rot * Quaternion.Euler(0, 0, 180));
-                    }
+                    rb.MoveRotation(rot);
+                }
+                else
+                {
+                    rb.MoveRotation(rot * Quaternion.Euler(0, 0, 180));
                 }
 
             }
@@ -348,7 +345,6 @@ namespace PathCreation.Examples
                 j.axis = -transform.forward;
                 j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
                 j.connectedBody = collision.rigidbody;
-                j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
                 j.enableCollision = true;
                 j.enablePreprocessing = false;
 
@@ -361,7 +357,6 @@ namespace PathCreation.Examples
                 j.axis = transform.forward;
                 j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
                 j.connectedBody = collision.rigidbody;
-                j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
                 j.enableCollision = true;
                 j.enablePreprocessing = false;
 
