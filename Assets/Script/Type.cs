@@ -20,7 +20,7 @@ public class Type : MonoBehaviour
         Blue,
         Maroon,
         Flower,
-        Green,
+        Cash,
 
     
         

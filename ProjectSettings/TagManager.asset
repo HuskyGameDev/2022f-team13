@@ -17,6 +17,7 @@ TagManager:
   - Locomotive
   - Pigs
   - Cows
+  - Cash
   layers:
   - Default
   - TransparentFX
