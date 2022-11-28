@@ -8,14 +8,17 @@ public class GameManager : MonoBehaviour
     public Text distanceText;
     public VictoryScreen VictoryScreen;
     public float distance = 1;
-    public bool bricks;
-    public bool logs;
+    //public bool bricks;
+    //public bool logs;
     public GameObject[] paths;
 
     private GameObject allStations;
     private int numStations;
     private int correctRails;
     public float totalDistanceTravelled = 0;
+    
+    [SerializeField]
+    private FloatScore scoreSO;  //saves overall score
 
     // Start is called before the first frame update
     void Start()
@@ -39,23 +42,26 @@ public class GameManager : MonoBehaviour
         distance = addDistance;
     }
 
-    //allows the vistory screen to display tyhe last recorded distance
+    //allows the victory screen to display the last recorded distance
     public void Victory(int i){
         correctRails = correctRails + i;
         if(correctRails == numStations){
             Time.timeScale = 0;
             Debug.Log(distance);
+
+            scoreSO.Value += distance;
+
             VictoryScreen.Setup(distance);
         }
     }
 
-    public void Bricks(){
+   /* public void Bricks(){
         bricks = true;
     }
 
         public void Logs(){
         logs = true;
-    }
+    }  */
 }
 
 

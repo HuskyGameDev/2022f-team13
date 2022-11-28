@@ -3,7 +3,7 @@
  * HGD team 13 
  * Manage the levels of the game 
  * created 10/6/2022
- * last upadated 10/6/2022
+ * last updated 11/27/2022
  */
 
 using System.Collections;
@@ -16,9 +16,12 @@ public class VictoryScreen : MonoBehaviour
     public Text victoryText;
     public float levelNumber; 
 
-//Makes Victory screen visable and changes text given in gamemanager to the last recorded distance
+    [SerializeField]
+    private FloatScore scoreSO;
+
+//Makes Victory screen visible and changes text given in gamemanager to the last recorded distance
     public void Setup( float distance ){
         gameObject.SetActive(true);
-        victoryText.text = "Level " + levelNumber.ToString() + " solved. Your Distance is " + distance.ToString() + " m.";
+        victoryText.text = "Level " + levelNumber.ToString() + " solved. Your Distance is " + distance.ToString() + " m. Total distance is " + scoreSO.Value.ToString() + " m." ;;
     }
 }
