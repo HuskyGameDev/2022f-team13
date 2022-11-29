@@ -419,7 +419,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &156664581 stripped
 Transform:
@@ -548,6 +548,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryText: {fileID: 1127760959}
   levelNumber: 3
+  scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!224 &249310685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -869,24 +870,6 @@ PrefabInstance:
     m_RemovedComponents:
     - {fileID: 5323930009734696419, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
---- !u!1 &368397536 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3898140334937328938, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
-  m_PrefabInstance: {fileID: 368397535}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &368397537
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368397536}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35d9dfd4a9c997141b9ecfb06fb02083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  e: 7
 --- !u!1001 &433256277
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1147,24 +1130,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
---- !u!1 &500250518 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3898140334937328938, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
-  m_PrefabInstance: {fileID: 500250517}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &500250519
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 500250518}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 35d9dfd4a9c997141b9ecfb06fb02083, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  e: 1
 --- !u!1001 &609985810
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2785,7 +2750,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1495299914
 GameObject:
@@ -2883,7 +2848,7 @@ RectTransform:
   - {fileID: 1052391143}
   - {fileID: 249310685}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -3860,7 +3825,7 @@ Transform:
   - {fileID: 1593594559}
   - {fileID: 25581248}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1961025964
 MonoBehaviour:
@@ -4039,7 +4004,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 12
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2027678641
 MonoBehaviour:
@@ -4056,9 +4021,9 @@ MonoBehaviour:
   distanceText: {fileID: 1683947385}
   VictoryScreen: {fileID: 249310684}
   distance: 0
-  bricks: 0
-  logs: 0
   paths: []
+  totalDistanceTravelled: 0
+  scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!1001 &2099497849
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4220,5 +4185,5 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

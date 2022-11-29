@@ -1311,7 +1311,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.75
+  m_fontSize: 20.65
   m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2235,7 +2235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5002667484895525897, guid: 1757ca3cfd5389d49b576eeaba3e0749, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.5
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5002667484895525897, guid: 1757ca3cfd5389d49b576eeaba3e0749, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2717,6 +2717,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryText: {fileID: 115542927}
   levelNumber: 1
+  scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!1 &1999949924
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,10 +3048,9 @@ MonoBehaviour:
   distanceText: {fileID: 1351199087}
   VictoryScreen: {fileID: 1973030256}
   distance: 0
-  bricks: 1
-  logs: 1
   paths: []
   totalDistanceTravelled: 0
+  scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!1 &2130267264
 GameObject:
   m_ObjectHideFlags: 0

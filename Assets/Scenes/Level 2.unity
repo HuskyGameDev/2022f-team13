@@ -1103,6 +1103,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   victoryText: {fileID: 1186459432}
   levelNumber: 2
+  scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!224 &956600566
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3098,10 +3099,9 @@ MonoBehaviour:
   distanceText: {fileID: 365342040}
   VictoryScreen: {fileID: 956600565}
   distance: 0
-  bricks: 0
-  logs: 0
   paths: []
   totalDistanceTravelled: 0
+  scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!1 &2130267264
 GameObject:
   m_ObjectHideFlags: 0
