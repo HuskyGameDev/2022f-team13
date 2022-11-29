@@ -8,11 +8,19 @@ public class SwitchTracks : MonoBehaviour
     public GameObject upper;
     public GameObject lower;
     public GameObject entrance;
+    public List<TrainScript2> trains;
+    public List<CarScript2> cars;
     private PathGenerator enter;
     public float z1;
     public float z2;
     public float speed;
     float timeCount;
+    public float tempz;
+    public float newVal;
+    float prevTime;
+
+    public bool open = true;
+    public bool prevOpen = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +31,21 @@ public class SwitchTracks : MonoBehaviour
         upper = paths[0].gameObject;
         lower = paths[1].gameObject;
         transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2);
+        GameObject[] temp = GameObject.FindGameObjectsWithTag("Train");
+        trains = new List<TrainScript2>();
+        foreach(GameObject t in temp)
+        {
+            trains.Add(t.GetComponent<TrainScript2>());
+        }
+
+        temp = GameObject.FindGameObjectsWithTag("Coal");
+        cars = new List<CarScript2>();
+        foreach (GameObject t in temp)
+        {
+            cars.Add(t.GetComponent<CarScript2>());
+        }
+
+        
     }
 
     // Update is called once per frame
@@ -34,22 +57,61 @@ public class SwitchTracks : MonoBehaviour
             enter = entrance.GetComponent<PathGenerator>();
         } else if (enter != null)
         {
-            if (GameObject.ReferenceEquals(enter.path_f, upper))
+            //Put in a Lockout to prevent the tracks from switching while the trains are on or very near the entrance point
+            open = true;
+            foreach (CarScript2 c in cars)
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z1), timeCount * speed);
+                if ((GameObject.ReferenceEquals(c.path_Ben, upper) || GameObject.ReferenceEquals(c.path_Ben, lower)) && c.distanceTravelled < 1.7)
+                {
+                    open = false;
+                    if (prevOpen)
+                    {
+                        prevTime = Time.time;
+                    }
+                    
+                }
             }
-            else if (GameObject.ReferenceEquals(enter.path_f, lower))
+            foreach (TrainScript2 t in trains)
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2), timeCount * speed);
+                if ((GameObject.ReferenceEquals(t.path, upper) || GameObject.ReferenceEquals(t.path, lower)) && t.distanceTravelled < 1.7)
+                {
+                    open = false;
+                    if (prevOpen)
+                    {
+                        prevTime = Time.time;
+                    }
+                }
             }
-            else if (GameObject.ReferenceEquals(enter.path_s, upper))
+            prevOpen = open;
+            if (open)
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z1), timeCount * speed);
-            }
-            else if (GameObject.ReferenceEquals(enter.path_s, lower))
+                if (GameObject.ReferenceEquals(enter.path_f, upper))
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z1), timeCount * speed);
+                    tempz = z1;
+                }
+                else if (GameObject.ReferenceEquals(enter.path_f, lower))
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2), timeCount * speed);
+                    tempz = z2;
+                }
+                else if (GameObject.ReferenceEquals(enter.path_s, upper))
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z1), timeCount * speed);
+                    tempz = z1;
+                }
+                else if (GameObject.ReferenceEquals(enter.path_s, lower))
+                {
+                    transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2), timeCount * speed);
+                    tempz = z2;
+                }
+            } else
             {
-                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, z2), timeCount * speed);
+                Debug.Log(Time.time - prevTime);
+                newVal = tempz + (Mathf.Sin((Time.time - prevTime) * 10f) * 10f);
+                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, newVal);
             }
+            
         }
 
        
@@ -62,20 +124,31 @@ public class SwitchTracks : MonoBehaviour
     void OnMouseDown()
     {
         Debug.Log("Switching Tracks\n");
-        
-        if(GameObject.ReferenceEquals(enter.path_f, upper))
+        if (open)
         {
-            enter.path_f = lower;
-        } else if (GameObject.ReferenceEquals(enter.path_f, lower))
+            if (GameObject.ReferenceEquals(enter.path_f, upper))
+            {
+                enter.path_f = lower;
+            }
+            else if (GameObject.ReferenceEquals(enter.path_f, lower))
+            {
+                enter.path_f = upper;
+            }
+            else if (GameObject.ReferenceEquals(enter.path_s, upper))
+            {
+                enter.path_s = lower;
+            }
+            else if (GameObject.ReferenceEquals(enter.path_s, lower))
+            {
+                enter.path_s = upper;
+            }
+        } else
         {
-            enter.path_f = upper;
-        } else if (GameObject.ReferenceEquals(enter.path_s, upper))
-        {
-            enter.path_s = lower;
-        } else if (GameObject.ReferenceEquals(enter.path_s, lower))
-        {
-            enter.path_s = upper;
+            
         }
+        
+
+
         
     }
 }

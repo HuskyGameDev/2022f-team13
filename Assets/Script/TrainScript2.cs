@@ -164,7 +164,7 @@ namespace PathCreation.Examples
                         tot_dist += (path_sc.path.GetClosestDistanceAlongPath(path_sc.path.GetPoint(path_sc.path.localPoints.Length - 1)) - path_sc.path.GetClosestDistanceAlongPath(mouse));
                     }
                     
-                    train_speed = train_speed = Mathf.Clamp(-tot_dist * smooth, -speed, speed);
+                    train_speed = Mathf.Clamp(-tot_dist * smooth, -speed, speed);
                 } else if (GameObject.ReferenceEquals(pathGen.path_f, temp)) 
                 {
 
@@ -180,7 +180,7 @@ namespace PathCreation.Examples
                         tot_dist += (path_sc.path.GetClosestDistanceAlongPath(path_sc.path.GetPoint(path_sc.path.localPoints.Length - 1)) - path_sc.path.GetClosestDistanceAlongPath(mouse));
                     }
 
-                    train_speed = train_speed = Mathf.Clamp(tot_dist * smooth, -speed, speed);
+                    train_speed = Mathf.Clamp(tot_dist * smooth, -speed, speed);
                 } else if (GameObject.ReferenceEquals(pathGen.path_s, ClosestPathConnection(temp)))
                 {
                     train_speed = -speed;
@@ -308,8 +308,9 @@ namespace PathCreation.Examples
 
                Vector3 pos = pathCreator.path.GetPointAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position));
                 //Debug.Log(rb.gameObject.name + " " + (new Vector3(pos.x, pos.y, zoffset) - rb.position));
-                rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
-                //rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
+                //rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
+                rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
+                /*
                 Quaternion rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
                 if (Quaternion.Angle(rb.rotation, rot) < Quaternion.Angle(rb.rotation, rot * Quaternion.Euler(0, 0, 180)))
                 {
@@ -318,10 +319,12 @@ namespace PathCreation.Examples
                 else
                 {
                     rb.MoveRotation(rot * Quaternion.Euler(0, 0, 180));
-                }
+                }*/
 
             }
-
+            //New Plan: Create a Force PID loop for both rotation and position
+            //Then make it that all that happens between held and not held is that the target changes
+            //Tune the loop accordingly to follow our implied controls, and we are in business
 
             //Debug.Log(rb.gameObject.name + " " + held);
             AdjustDistance();

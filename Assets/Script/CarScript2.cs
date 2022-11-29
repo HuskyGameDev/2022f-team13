@@ -22,6 +22,8 @@ public class CarScript2 : MonoBehaviour
     public float zoffset;
     public bool frontCon;
     public bool rearCon;
+
+    public float distanceTravelled;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,7 +43,8 @@ public class CarScript2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
+        distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(rb.position);
+
         if (Vector3.Distance(pathCreator.path.GetClosestPointOnPath(rb.position), pathCreator.path.GetPointAtTime(1f)) < .01 && pathGen.path_f != null)
         {
             path_Ben = pathGen.path_f;
@@ -61,20 +64,21 @@ public class CarScript2 : MonoBehaviour
     {
        
         Vector3 pos = pathCreator.path.GetClosestPointOnPath(rb.position);
-        rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
-        if (!frontCon && !rearCon)
+        //rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
+        rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
+        /*
+        Quaternion rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
+        if (Quaternion.Angle(rb.rotation, rot) < Quaternion.Angle(rb.rotation, rot * Quaternion.Euler(0, 0, 180)))
         {
-            Quaternion rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
-            if (Quaternion.Angle(rb.rotation, rot) < Quaternion.Angle(rb.rotation, rot * Quaternion.Euler(0, 0, 180)))
-            {
-                rb.MoveRotation(rot);
-            }
-            else
-            {
-                rb.MoveRotation(rot * Quaternion.Euler(0, 0, 180));
-            }
+            Quaternion temp  = Quaternion.Euler(new Vector3(0, 0, Vector3.Distance(rb.rotation.eulerAngles, rot.eulerAngles)) * Time.fixedDeltaTime);
+            rb.MoveRotation(rb.rotation * temp);
         }
-        
+        else
+        {
+            Quaternion temp = Quaternion.Euler(new Vector3(0, 0, Vector3.Distance(rb.rotation.eulerAngles, (rot * Quaternion.Euler(0, 0, 180)).eulerAngles)) * Time.fixedDeltaTime);
+            rb.MoveRotation(rb.rotation * temp);
+        }
+        */
     }
 
     void OnCollisionEnter(Collision collision)
