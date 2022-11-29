@@ -24,10 +24,11 @@ public class CarScript2 : MonoBehaviour
     public bool rearCon;
 
     public float distanceTravelled;
+    public AudioSource connect;
+    public AudioSource disconnect;
     // Start is called before the first frame update
     void Start()
     {
-
         rb = gameObject.GetComponent<Rigidbody>();
         pathGen = path_Ben.GetComponent<PathGenerator>();
         pathCreator = path_Ben.GetComponent<PathCreator>();
@@ -97,6 +98,7 @@ public class CarScript2 : MonoBehaviour
             j.enablePreprocessing = false;
 
             frontCon = true;
+            connect.Play();
         }
         else if (collision.gameObject.GetComponent<Rigidbody>() != null && !rearCon && transform.InverseTransformPoint(collision.contacts[0].point).y < 0)
         {
@@ -110,6 +112,7 @@ public class CarScript2 : MonoBehaviour
             j.enablePreprocessing = false;
 
             rearCon = true;
+            connect.Play();
         }
 
     }
