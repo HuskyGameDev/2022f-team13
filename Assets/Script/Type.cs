@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Type : MonoBehaviour
 {
-    public enum element
+    public enum element//only add types to the bottom or all the types on the game will get messed up
     {
         Train,
         Coal,
@@ -21,6 +21,8 @@ public class Type : MonoBehaviour
         Maroon,
         Flower,
         Cash,
+        Green,
+        Gold,
 
     
         
