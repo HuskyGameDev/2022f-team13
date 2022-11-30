@@ -21,9 +21,11 @@ public class SwitchTracks : MonoBehaviour
 
     public bool open = true;
     public bool prevOpen = true;
+    AudioManagerSwitch audioScript;
     // Start is called before the first frame update
     void Start()
     {
+        audioScript = gameObject.GetComponent<AudioManagerSwitch>();
         Component[] paths;
         paths = transform.parent.GetComponentsInChildren<PathGenerator>();
 
@@ -129,18 +131,22 @@ public class SwitchTracks : MonoBehaviour
             if (GameObject.ReferenceEquals(enter.path_f, upper))
             {
                 enter.path_f = lower;
+                audioScript.Switching();
             }
             else if (GameObject.ReferenceEquals(enter.path_f, lower))
             {
                 enter.path_f = upper;
+                audioScript.Switching();
             }
             else if (GameObject.ReferenceEquals(enter.path_s, upper))
             {
                 enter.path_s = lower;
+                audioScript.Switching();
             }
             else if (GameObject.ReferenceEquals(enter.path_s, lower))
             {
                 enter.path_s = upper;
+                audioScript.Switching();
             }
         } else
         {

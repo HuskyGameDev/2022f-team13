@@ -24,8 +24,7 @@ public class CarScript2 : MonoBehaviour
     public bool rearCon;
 
     public float distanceTravelled;
-    public AudioSource connect;
-    public AudioSource disconnect;
+    AudioManagerTrainAndCarScript audioScript;
     // Start is called before the first frame update
     void Start()
     {
@@ -39,6 +38,7 @@ public class CarScript2 : MonoBehaviour
         rb.position = new Vector3(temp.x, temp.y, zoffset);
         rb.rotation = pathCreator.path.GetRotationAtDistance(startdist) * Quaternion.Euler(x, y, z);
         m.enabled = true;
+        audioScript = gameObject.GetComponent<AudioManagerTrainAndCarScript>();
     }
 
     // Update is called once per frame
@@ -98,7 +98,7 @@ public class CarScript2 : MonoBehaviour
             j.enablePreprocessing = false;
 
             frontCon = true;
-            connect.Play();
+            audioScript.Connection();
         }
         else if (collision.gameObject.GetComponent<Rigidbody>() != null && !rearCon && transform.InverseTransformPoint(collision.contacts[0].point).y < 0)
         {
@@ -112,7 +112,7 @@ public class CarScript2 : MonoBehaviour
             j.enablePreprocessing = false;
 
             rearCon = true;
-            connect.Play();
+            audioScript.Connection();
         }
 
     }

@@ -128,6 +128,7 @@ GameObject:
   - component: {fileID: 2817500975213408053}
   - component: {fileID: 827237506068015374}
   - component: {fileID: 3226913119079385261}
+  - component: {fileID: 3562587402662112626}
   m_Layer: 0
   m_Name: Switch
   m_TagString: Untagged
@@ -230,9 +231,29 @@ MonoBehaviour:
   upper: {fileID: 4390827900030228988}
   lower: {fileID: 6243234692640460040}
   entrance: {fileID: 0}
+  trains: []
+  cars: []
   z1: 0
   z2: 0
   speed: 0.0015
+  tempz: 0
+  newVal: 0
+  open: 1
+  prevOpen: 1
+--- !u!114 &3562587402662112626
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1285004500659831540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20896329bea919243bb45ac7022fb562, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  switchNoise: {fileID: 0}
+  switchClip: {fileID: 8300000, guid: 17831cd02c68cf545bcfcc21ea740a0d, type: 3}
 --- !u!1 &4390827899993225378
 GameObject:
   m_ObjectHideFlags: 0
