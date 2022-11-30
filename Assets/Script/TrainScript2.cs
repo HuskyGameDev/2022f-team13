@@ -365,7 +365,7 @@ namespace PathCreation.Examples
             {
                 HingeJoint j;
                 j = gameObject.AddComponent<HingeJoint>();
-                j.axis = -transform.forward;
+                j.axis = transform.forward;
                 j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
                 j.connectedBody = collision.rigidbody;
                 j.enableCollision = false;

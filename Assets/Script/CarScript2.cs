@@ -22,6 +22,7 @@ public class CarScript2 : MonoBehaviour
     public float zoffset;
     public bool frontCon;
     public bool rearCon;
+    bool hover;
 
     public float distanceTravelled;
     AudioManagerTrainAndCarScript audioScript;
@@ -58,7 +59,37 @@ public class CarScript2 : MonoBehaviour
             pathGen = path_Ben.GetComponent<PathGenerator>();
             pathCreator = path_Ben.GetComponent<PathCreator>();
         }
-       
+
+        if (hover && Input.GetMouseButtonDown(1))
+        {
+            HingeJoint[] hinges = gameObject.GetComponents<HingeJoint>();
+            foreach (HingeJoint hinge in hinges)
+            {
+
+                HingeJoint[] others = hinge.connectedBody.gameObject.GetComponents<HingeJoint>();
+                foreach (HingeJoint other in others)
+                {
+                    if (GameObject.ReferenceEquals(rb.gameObject, other.connectedBody.gameObject))
+                    {
+                        Destroy(other);
+                    }
+                }
+
+                if (hinge.connectedBody.gameObject.GetComponent<TrainScript2>() != null)
+                {
+                    hinge.connectedBody.gameObject.GetComponent<TrainScript2>().frontCon = false;
+                    hinge.connectedBody.gameObject.GetComponent<TrainScript2>().rearCon = false;
+                }
+                else if (hinge.connectedBody.gameObject.GetComponent<CarScript2>() != null)
+                {
+                    hinge.connectedBody.gameObject.GetComponent<CarScript2>().frontCon = false;
+                    hinge.connectedBody.gameObject.GetComponent<CarScript2>().rearCon = false;
+                }
+                Destroy(hinge);
+            }
+            frontCon = false;
+            rearCon = false;
+        }
     }
 
     void FixedUpdate()
@@ -89,7 +120,7 @@ public class CarScript2 : MonoBehaviour
         {
             HingeJoint j;
             j = gameObject.AddComponent<HingeJoint>();
-            j.axis = -transform.forward;
+            j.axis = transform.forward;
             j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
             j.connectedBody = collision.rigidbody;
             //j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
@@ -114,6 +145,16 @@ public class CarScript2 : MonoBehaviour
             audioScript.Connection();
         }
 
+    }
+
+    void OnMouseOver()
+    {
+        hover = true;
+    }
+
+    void OnMouseExit()
+    {
+        hover = false;
     }
 
 }
