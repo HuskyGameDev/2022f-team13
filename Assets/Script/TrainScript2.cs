@@ -22,7 +22,8 @@ namespace PathCreation.Examples
         public float smooth;
         float train_speed;
         public bool lockout;
-        AudioSource connect;
+        AudioManagerTrainAndCarScript audioScript;
+
 
         //I added
         public float x;
@@ -50,7 +51,6 @@ namespace PathCreation.Examples
             pathGen = path.GetComponent<PathGenerator>();
             m = gameObject.GetComponent<MeshCollider>();
            m.enabled = false;
-            connect = GetComponent<AudioSource>();
             if(gm == null)
             {
                 gm = FindObjectOfType<GameManager>();
@@ -70,6 +70,7 @@ namespace PathCreation.Examples
             prevDist = startdist;
             distanceTravelled = prevDist;
             m.enabled = true;
+            audioScript = gameObject.GetComponent<AudioManagerTrainAndCarScript>();
         }
 
         void Update()
@@ -354,7 +355,7 @@ namespace PathCreation.Examples
                 j.enablePreprocessing = false;
 
                 frontCon = true;
-                connect.Play();
+                audioScript.Connection();
             }
             else if (collision.gameObject.GetComponent<Rigidbody>() != null && !rearCon && transform.InverseTransformPoint(collision.contacts[0].point).y < 0)
             {
@@ -367,7 +368,7 @@ namespace PathCreation.Examples
                 j.enablePreprocessing = false;
 
                 rearCon = true;
-                connect.Play();
+                audioScript.Connection();
             }
             
         }
