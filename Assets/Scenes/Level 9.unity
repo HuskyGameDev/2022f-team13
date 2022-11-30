@@ -647,7 +647,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryText: {fileID: 1127760959}
-  levelNumber: 9
   scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!224 &249310685
 RectTransform:
@@ -1109,10 +1108,10 @@ RectTransform:
   m_Father: {fileID: 249310685}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.30121046}
-  m_AnchorMax: {x: 1, y: 0.47347477}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 0, y: 2}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &707106589
 MonoBehaviour:
@@ -1948,7 +1947,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Level 9 solved. Your Distance is 0 m.
+  m_Text: 'Level 9 solved. Your Distance is 0 m.
+
+    You recieved 0 points. Your
+    total points are 0 points.'
 --- !u!222 &1127760960
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3781,6 +3783,9 @@ MonoBehaviour:
   distance: 0
   paths: []
   totalDistanceTravelled: 0
+  levelNumber: 9
+  overallScore: 0
+  pointsRecieved: 0
   scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!1001 &2099497849
 PrefabInstance:

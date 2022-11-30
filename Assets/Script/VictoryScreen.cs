@@ -13,15 +13,14 @@ using UnityEngine.UI;
 
 public class VictoryScreen : MonoBehaviour
 {
-    public Text victoryText;
-    public float levelNumber; 
-
-    [SerializeField]
-    private FloatScore scoreSO;
+    public Text victoryText;    
 
 //Makes Victory screen visible and changes text given in gamemanager to the last recorded distance
-    public void Setup( float distance ){
+    public void Setup( float distance , int overallScore, int pointsRecieved, int levelNumber){
+
         gameObject.SetActive(true);
-        victoryText.text = "Level " + levelNumber.ToString() + " solved. Your Distance is " + distance.ToString() + " m. Total distance is " + scoreSO.Value.ToString() + " m." ;;
+
+        victoryText.text = "Level " + levelNumber.ToString() + " solved. Your Distance is " + distance.ToString() + " m. \n You recieved " + pointsRecieved + " points. Your total points are " + overallScore + " points." ;;
     }
+
 }

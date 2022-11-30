@@ -562,7 +562,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.35
+  m_fontSize: 22.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1088,7 +1088,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &956600565
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1102,7 +1102,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryText: {fileID: 1186459432}
-  levelNumber: 2
   scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!224 &956600566
 RectTransform:
@@ -1759,7 +1758,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Level 1 solved. Your Distance is 0 m.
+  m_Text: 'Level 2 solved. Your Distance is 0 m.
+
+    You recieved 0 points. Your
+    total points are 0 points.'
 --- !u!222 &1186459433
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1783,10 +1785,10 @@ RectTransform:
   m_Father: {fileID: 1850762972}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.25667408, y: 0.1875106}
-  m_AnchorMax: {x: 0.75413483, y: 0.625}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 398, y: 35}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1333108480
 GameObject:
@@ -2021,7 +2023,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.45
+  m_fontSize: 21.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2417,7 +2419,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
+  m_fontSize: 23.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -2649,10 +2651,10 @@ RectTransform:
   m_Father: {fileID: 956600566}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.30121046}
-  m_AnchorMax: {x: 1, y: 0.47347477}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 0, y: 2}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 79}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1850762973
 MonoBehaviour:
@@ -2777,7 +2779,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.7
+  m_fontSize: 34.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3101,6 +3103,9 @@ MonoBehaviour:
   distance: 0
   paths: []
   totalDistanceTravelled: 0
+  levelNumber: 2
+  overallScore: 0
+  pointsRecieved: 0
   scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!1 &2130267264
 GameObject:
