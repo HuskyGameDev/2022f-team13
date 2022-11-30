@@ -47,7 +47,7 @@ public class SwitchTracks : MonoBehaviour
             cars.Add(t.GetComponent<CarScript2>());
         }
 
-        
+        tempz = z2;
     }
 
     // Update is called once per frame
