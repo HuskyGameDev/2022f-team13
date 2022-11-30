@@ -102,7 +102,7 @@ Rigidbody:
   serializedVersion: 2
   m_Mass: 300
   m_Drag: 20
-  m_AngularDrag: 100
+  m_AngularDrag: 0
   m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 1
@@ -139,6 +139,14 @@ MonoBehaviour:
   zoffset: -0.5
   frontCon: 0
   rearCon: 0
+  targetAngle: 0
+  currentAngle: 0
+  acceleration: 0
+  AngSpeed: 0
+  maxAccel: 180
+  maxASpeed: 90
+  pGain: 20
+  dGain: 10
 --- !u!64 &8957194183785302342
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -180,3 +188,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trainConnect: {fileID: 0}
   trainDisconnect: {fileID: 0}
+  trainConnectClip: {fileID: 0}
+  trainDisconnectClip: {fileID: 0}

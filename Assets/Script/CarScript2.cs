@@ -65,21 +65,20 @@ public class CarScript2 : MonoBehaviour
     {
        
         Vector3 pos = pathCreator.path.GetClosestPointOnPath(rb.position);
-        //rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
-        rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
-        /*
+        rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
+        //rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
         Quaternion rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
         if (Quaternion.Angle(rb.rotation, rot) < Quaternion.Angle(rb.rotation, rot * Quaternion.Euler(0, 0, 180)))
         {
-            Quaternion temp  = Quaternion.Euler(new Vector3(0, 0, Vector3.Distance(rb.rotation.eulerAngles, rot.eulerAngles)) * Time.fixedDeltaTime);
-            rb.MoveRotation(rb.rotation * temp);
+            Quaternion tempq = rot * Quaternion.Inverse(rb.rotation);
+            rb.AddTorque(tempq.x, tempq.y, tempq.z);
         }
         else
         {
-            Quaternion temp = Quaternion.Euler(new Vector3(0, 0, Vector3.Distance(rb.rotation.eulerAngles, (rot * Quaternion.Euler(0, 0, 180)).eulerAngles)) * Time.fixedDeltaTime);
-            rb.MoveRotation(rb.rotation * temp);
+
+            Quaternion tempq = (rot * Quaternion.Euler(0, 0, 180)) * Quaternion.Inverse(rb.rotation);
+            rb.AddTorque(tempq.x, tempq.y, tempq.z);
         }
-        */
     }
 
     void OnCollisionEnter(Collision collision)

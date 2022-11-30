@@ -44,6 +44,18 @@ namespace PathCreation.Examples
         public bool frontCon;
         public bool rearCon;
 
+        //Last Ditch Effort to make the proper Rotation system actually work
+        //If this doesn't work, I am refactoring the entire backend because of reasons.
+        public float targetAngle = 0;
+        public float currentAngle;
+        public float acceleration;
+        public float AngSpeed = 0;
+        public float maxAccel = 180;
+        public float maxASpeed = 90;
+        public float pGain = 20;
+        public float dGain = 10;
+
+
         Vector3 test;
 
         void Start() {
@@ -311,18 +323,22 @@ namespace PathCreation.Examples
 
                Vector3 pos = pathCreator.path.GetPointAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position));
                 //Debug.Log(rb.gameObject.name + " " + (new Vector3(pos.x, pos.y, zoffset) - rb.position));
-                //rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
-                rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
-                /*
-                Quaternion rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
+                rb.AddForce((new Vector3(pos.x, pos.y, zoffset) - rb.position) * 100, ForceMode.VelocityChange); //Force Keeping Train on Track
+                //rb.MovePosition(new Vector3(pos.x, pos.y, zoffset));
+                 Quaternion rot = pathCreator.path.GetRotationAtDistance(pathCreator.path.GetClosestDistanceAlongPath(rb.position)) * Quaternion.Euler(x, y, z);
                 if (Quaternion.Angle(rb.rotation, rot) < Quaternion.Angle(rb.rotation, rot * Quaternion.Euler(0, 0, 180)))
                 {
-                    rb.MoveRotation(rot);
+                    Quaternion tempq = rot * Quaternion.Inverse(rb.rotation);
+                    rb.AddTorque(tempq.x, tempq.y, tempq.z);
                 }
                 else
                 {
-                    rb.MoveRotation(rot * Quaternion.Euler(0, 0, 180));
-                }*/
+                    
+                    Quaternion tempq = (rot * Quaternion.Euler(0, 0, 180)) * Quaternion.Inverse(rb.rotation);
+                    rb.AddTorque(tempq.x, tempq.y, tempq.z);
+                }
+                distanceTravelled = pathCreator.path.GetClosestDistanceAlongPath(rb.position);
+
 
             }
             //New Plan: Create a Force PID loop for both rotation and position
@@ -331,6 +347,7 @@ namespace PathCreation.Examples
 
             //Debug.Log(rb.gameObject.name + " " + held);
             AdjustDistance();
+            
             
         }
         // If the path changes during the game, update the distance travelled so that the follower's position on the new path
