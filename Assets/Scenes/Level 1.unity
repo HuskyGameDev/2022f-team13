@@ -479,10 +479,10 @@ RectTransform:
   m_Father: {fileID: 1565027907}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.034, y: 0.6575094}
-  m_AnchorMax: {x: 0.058000002, y: 1}
-  m_AnchoredPosition: {x: -0.49987793, y: 0}
-  m_SizeDelta: {x: 3, y: 0}
+  m_AnchorMin: {x: 0.031500004, y: 0.6575094}
+  m_AnchorMax: {x: 0.05925, y: 1}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &361201363
 MonoBehaviour:
@@ -1533,9 +1533,9 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.071, y: 0.71374536}
-  m_AnchorMax: {x: 0.26174372, y: 0.93250936}
-  m_AnchoredPosition: {x: -0.07751465, y: 0.17023087}
-  m_SizeDelta: {x: -0.64900017, y: 0.34045}
+  m_AnchorMax: {x: 0.28425002, y: 0.93250936}
+  m_AnchoredPosition: {x: 0.123535156, y: 0.17023087}
+  m_SizeDelta: {x: -0.2470665, y: 0.3405}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1351199087
 MonoBehaviour:
@@ -2642,7 +2642,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1973030253
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2719,7 +2719,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryText: {fileID: 115542927}
-  scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!1 &1999949924
 GameObject:
   m_ObjectHideFlags: 0
@@ -3055,7 +3054,6 @@ MonoBehaviour:
   levelNumber: 1
   overallScore: 0
   pointsRecieved: 0
-  scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!1 &2130267264
 GameObject:
   m_ObjectHideFlags: 0

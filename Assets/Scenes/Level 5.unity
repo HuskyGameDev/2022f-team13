@@ -824,7 +824,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryText: {fileID: 1127760959}
-  scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!224 &249310685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2008,8 +2007,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.071, y: 0.71374536}
   m_AnchorMax: {x: 0.24312982, y: 0.9454252}
-  m_AnchoredPosition: {x: 0.5805054, y: -0.32976913}
-  m_SizeDelta: {x: 0.667099, y: -0.65954995}
+  m_AnchoredPosition: {x: 9.123475, y: -0.32976913}
+  m_SizeDelta: {x: 17.75305, y: -0.65954995}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1276301998
 MonoBehaviour:
@@ -2682,10 +2681,10 @@ RectTransform:
   m_Father: {fileID: 382144486}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.034, y: 0.6575094}
-  m_AnchorMax: {x: 0.058000002, y: 1}
-  m_AnchoredPosition: {x: -0.49987793, y: 0}
-  m_SizeDelta: {x: 3, y: 0}
+  m_AnchorMin: {x: 0.031500004, y: 0.6575094}
+  m_AnchorMax: {x: 0.05925, y: 1}
+  m_AnchoredPosition: {x: 0.00012207031, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1624726290
 MonoBehaviour:
@@ -3635,7 +3634,6 @@ MonoBehaviour:
   levelNumber: 5
   overallScore: 0
   pointsRecieved: 0
-  scoreSO: {fileID: 11400000, guid: 9d2d5a888939634409f2860e91bdcac7, type: 2}
 --- !u!1 &2130267264
 GameObject:
   m_ObjectHideFlags: 0
