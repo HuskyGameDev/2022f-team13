@@ -94,7 +94,7 @@ public class CarScript2 : MonoBehaviour
             j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
             j.connectedBody = collision.rigidbody;
             //j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
-            j.enableCollision = true;
+            j.enableCollision = false;
             j.enablePreprocessing = false;
 
             frontCon = true;
@@ -108,7 +108,7 @@ public class CarScript2 : MonoBehaviour
             j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
             j.connectedBody = collision.rigidbody;
             //j.connectedAnchor = transform.InverseTransformPoint(collision.contacts[1].point);
-            j.enableCollision = true;
+            j.enableCollision = false;
             j.enablePreprocessing = false;
 
             rearCon = true;

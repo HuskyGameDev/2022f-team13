@@ -351,7 +351,7 @@ namespace PathCreation.Examples
                 j.axis = -transform.forward;
                 j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
                 j.connectedBody = collision.rigidbody;
-                j.enableCollision = true;
+                j.enableCollision = false;
                 j.enablePreprocessing = false;
 
                 frontCon = true;
@@ -364,7 +364,7 @@ namespace PathCreation.Examples
                 j.axis = transform.forward;
                 j.anchor = transform.InverseTransformPoint(collision.contacts[0].point);
                 j.connectedBody = collision.rigidbody;
-                j.enableCollision = true;
+                j.enableCollision = false;
                 j.enablePreprocessing = false;
 
                 rearCon = true;

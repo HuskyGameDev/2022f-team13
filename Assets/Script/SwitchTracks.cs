@@ -61,29 +61,101 @@ public class SwitchTracks : MonoBehaviour
         {
             //Put in a Lockout to prevent the tracks from switching while the trains are on or very near the entrance point
             open = true;
+            int val = 0;
+            float closest = Mathf.Infinity;
             foreach (CarScript2 c in cars)
             {
-                if ((GameObject.ReferenceEquals(c.path_Ben, upper) || GameObject.ReferenceEquals(c.path_Ben, lower)) && c.distanceTravelled < 1.7)
+                //Further Subdivide these for each situation to improve the problem.
+                //I forgot an edge case that still allows things to hit the fan.
+                if (GameObject.ReferenceEquals(c.path_Ben, upper) && c.distanceTravelled < 1.7)
                 {
                     open = false;
                     if (prevOpen)
                     {
                         prevTime = Time.time;
                     }
-                    
+
+                    if (GameObject.ReferenceEquals(enter.path_f, lower))
+                    {
+                        enter.path_f = upper;
+                        audioScript.Switching();
+                        tempz = z1;
+                    }
+                    else if (GameObject.ReferenceEquals(enter.path_s, lower))
+                    {
+                        enter.path_s = upper;
+                        audioScript.Switching();
+                        tempz = z1;
+                    }
+
+                } else if (GameObject.ReferenceEquals(c.path_Ben, lower) && c.distanceTravelled < 1.7)
+                {
+                    open = false;
+                    if (prevOpen)
+                    {
+                        prevTime = Time.time;
+                    }
+
+                    if (GameObject.ReferenceEquals(enter.path_f, upper))
+                    {
+                        enter.path_f = lower;
+                        audioScript.Switching();
+                        tempz = z2;
+                    }
+                    else if (GameObject.ReferenceEquals(enter.path_s, upper))
+                    {
+                        enter.path_s = lower;
+                        audioScript.Switching();
+                        tempz = z2;
+                    }
                 }
             }
             foreach (TrainScript2 t in trains)
             {
-                if ((GameObject.ReferenceEquals(t.path, upper) || GameObject.ReferenceEquals(t.path, lower)) && t.distanceTravelled < 1.7)
+                if (GameObject.ReferenceEquals(t.path, upper) && t.distanceTravelled < 1.7)
                 {
                     open = false;
                     if (prevOpen)
                     {
                         prevTime = Time.time;
                     }
+
+                    if (GameObject.ReferenceEquals(enter.path_f, lower))
+                    {
+                        enter.path_f = upper;
+                        audioScript.Switching();
+                        tempz = z1;
+                    }
+                    else if (GameObject.ReferenceEquals(enter.path_s, lower))
+                    {
+                        enter.path_s = upper;
+                        audioScript.Switching();
+                        tempz = z1;
+                    }
+
+                } else if (GameObject.ReferenceEquals(t.path, lower) && t.distanceTravelled < 1.7)
+                {
+                    open = false;
+                    if (prevOpen)
+                    {
+                        prevTime = Time.time;
+                    }
+
+                    if (GameObject.ReferenceEquals(enter.path_f, upper))
+                    {
+                        enter.path_f = lower;
+                        audioScript.Switching();
+                        tempz = z2;
+                    }
+                    else if (GameObject.ReferenceEquals(enter.path_s, upper))
+                    {
+                        enter.path_s = lower;
+                        audioScript.Switching();
+                        tempz = z2;
+                    }
                 }
             }
+
             prevOpen = open;
             if (open)
             {
@@ -111,7 +183,7 @@ public class SwitchTracks : MonoBehaviour
             {
                 Debug.Log(Time.time - prevTime);
                 newVal = tempz + (Mathf.Sin((Time.time - prevTime) * 10f) * 10f);
-                transform.rotation = Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, newVal);
+                transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, newVal), timeCount * speed);
             }
             
         }
