@@ -181,7 +181,6 @@ public class SwitchTracks : MonoBehaviour
                 }
             } else
             {
-                Debug.Log(Time.time - prevTime);
                 newVal = tempz + (Mathf.Sin((Time.time - prevTime) * 10f) * 10f);
                 transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.Euler(transform.rotation.eulerAngles.x, transform.rotation.eulerAngles.y, newVal), timeCount * speed);
             }
