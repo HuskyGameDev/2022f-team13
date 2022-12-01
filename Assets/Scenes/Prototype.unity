@@ -160,8 +160,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryText: {fileID: 1193748222}
-  levelNumber: 0
-  scoreSO: {fileID: 0}
 --- !u!224 &101913356
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2660,7 +2658,9 @@ MonoBehaviour:
   distance: 1
   paths: []
   totalDistanceTravelled: 0
-  scoreSO: {fileID: 0}
+  levelNumber: 0
+  overallScore: 0
+  pointsRecieved: 0
 --- !u!1001 &2119996693
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3083,6 +3083,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8363586699730753195, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
+      propertyPath: e
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8899161116091233586, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: path_Ben
       value: 
@@ -3154,7 +3158,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5164374988649996787, guid: 1757ca3cfd5389d49b576eeaba3e0749, type: 3}
       propertyPath: e
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 8164760968698247321, guid: 1757ca3cfd5389d49b576eeaba3e0749, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -3169,6 +3173,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 8703682918633285291, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: e
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 8957194183785302343, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
       propertyPath: m_RootOrder
       value: 1
