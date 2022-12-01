@@ -311,7 +311,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 5.25
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -453,8 +453,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryText: {fileID: 1127760959}
-  levelNumber: 5
-  scoreSO: {fileID: 0}
 --- !u!224 &249310685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3634,7 +3632,9 @@ MonoBehaviour:
   distance: 0
   paths: []
   totalDistanceTravelled: 0
-  scoreSO: {fileID: 0}
+  levelNumber: 0
+  overallScore: 0
+  pointsRecieved: 0
 --- !u!4 &2099058860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4390827901538850425, guid: 06d89ed7a6d97ab42a57ad6dde33dae1, type: 3}

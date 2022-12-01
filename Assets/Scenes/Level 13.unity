@@ -316,7 +316,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 5
+  orthographic size: 6.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -463,7 +463,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   victoryText: {fileID: 1127760959}
-  levelNumber: 5
 --- !u!224 &249310685
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3980,10 +3979,11 @@ MonoBehaviour:
   distanceText: {fileID: 1276301998}
   VictoryScreen: {fileID: 249310684}
   distance: 0
-  bricks: 0
-  logs: 0
   paths: []
   totalDistanceTravelled: 0
+  levelNumber: 0
+  overallScore: 0
+  pointsRecieved: 0
 --- !u!1001 &2075148903
 PrefabInstance:
   m_ObjectHideFlags: 0
