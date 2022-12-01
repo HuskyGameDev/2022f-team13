@@ -18,6 +18,8 @@ TagManager:
   - Pigs
   - Cows
   - Cash
+  - Undefined
+  - Bucket
   layers:
   - Default
   - TransparentFX
