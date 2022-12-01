@@ -192,5 +192,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   trainConnect: {fileID: 0}
   trainDisconnect: {fileID: 0}
-  trainConnectClip: {fileID: 0}
-  trainDisconnectClip: {fileID: 0}
+  trainConnectClip: {fileID: 8300000, guid: 99506bc36ac2d94449c7ab23f9fb91d0, type: 3}
+  trainDisconnectClip: {fileID: 8300000, guid: c4ca2464c83839d41bd75d3855ca8631, type: 3}
