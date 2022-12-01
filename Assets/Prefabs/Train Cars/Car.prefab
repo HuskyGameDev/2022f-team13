@@ -167,7 +167,7 @@ MonoBehaviour:
   Pigs: {fileID: 919132149155446097, guid: c6a27ceb60399a946a74d52b4a06704e, type: 3}
   Cows: {fileID: 919132149155446097, guid: b2de19c6a9ec427428456267f564f171, type: 3}
   Iron: {fileID: 919132149155446097, guid: 52cd434769a17c64099e3512c23842df, type: 3}
-  Car: {fileID: 0}
+  Car: {fileID: 919132149155446097, guid: 7f977b1ac4e77164989aab1652294ec9, type: 3}
   Flower: {fileID: 919132149155446097, guid: 6cc7e3f4b4743084d840540798df8dda, type: 3}
   Cash: {fileID: 919132149155446097, guid: 6088130a4a9e20a488f65027a0b3236a, type: 3}
   Gold: {fileID: 919132149155446097, guid: 4424ce0a89e59794da12eac4c929b9b1, type: 3}
