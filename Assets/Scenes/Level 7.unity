@@ -3322,6 +3322,10 @@ PrefabInstance:
       propertyPath: e
       value: 11
       objectReference: {fileID: 0}
+    - target: {fileID: 8703682918633285291, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
+      propertyPath: Bullets
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: c04130ed2128a6844aca0447b94c8db0, type: 3}
     - target: {fileID: 8957194183785302343, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
       propertyPath: m_RootOrder
       value: 2
@@ -4277,7 +4281,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8703682918633285291, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
       propertyPath: e
-      value: 15
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 8957194183785302345, guid: a75bb1df300e9bb4082fc01610b1136c, type: 3}
       propertyPath: m_Materials.Array.data[0]

@@ -44,18 +44,6 @@ namespace PathCreation.Examples
         public bool frontCon;
         public bool rearCon;
 
-        //Last Ditch Effort to make the proper Rotation system actually work
-        //If this doesn't work, I am refactoring the entire backend because of reasons.
-        public float targetAngle = 0;
-        public float currentAngle;
-        public float acceleration;
-        public float AngSpeed = 0;
-        public float maxAccel = 180;
-        public float maxASpeed = 90;
-        public float pGain = 20;
-        public float dGain = 10;
-
-
         Vector3 test;
 
         void Start() {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 5164374988649996787}
   m_Layer: 0
   m_Name: Proximity Check3D
-  m_TagString: Untagged
+  m_TagString: Bucket
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -123,6 +123,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 35d9dfd4a9c997141b9ecfb06fb02083, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Coal: {fileID: 919132149155446097, guid: d6f5e2b70dce36e42946a34c08873dfb, type: 3}
+  Nuke: {fileID: 919132149155446097, guid: 6b3d57648a7957b42b596511389db60b, type: 3}
+  Brick: {fileID: 919132149155446097, guid: 9bd861071aa3bed4290677b10735d415, type: 3}
+  Logs: {fileID: 919132149155446097, guid: 4da1cb607726c0646bf50c9ba1038d74, type: 3}
+  Bullets: {fileID: 919132149155446097, guid: c04130ed2128a6844aca0447b94c8db0, type: 3}
+  Pigs: {fileID: 0}
+  Cows: {fileID: 0}
+  Iron: {fileID: 919132149155446097, guid: 52cd434769a17c64099e3512c23842df, type: 3}
+  Car: {fileID: 0}
+  Flower: {fileID: 919132149155446097, guid: 6cc7e3f4b4743084d840540798df8dda, type: 3}
+  Cash: {fileID: 919132149155446097, guid: 6088130a4a9e20a488f65027a0b3236a, type: 3}
+  Gold: {fileID: 919132149155446097, guid: 4424ce0a89e59794da12eac4c929b9b1, type: 3}
   e: 0
 --- !u!1 &5002667484895525896
 GameObject:
