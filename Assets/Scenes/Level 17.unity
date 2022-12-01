@@ -208,7 +208,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21.45
+  m_fontSize: 21.3
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1259,7 +1259,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 22.35
+  m_fontSize: 22.2
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -1348,10 +1348,10 @@ RectTransform:
   m_Father: {fileID: 249310685}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.30121046}
-  m_AnchorMax: {x: 1, y: 0.47347477}
-  m_AnchoredPosition: {x: 0, y: 1}
-  m_SizeDelta: {x: 0, y: 2}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &707106589
 MonoBehaviour:
@@ -2688,7 +2688,10 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: Level 1 solved. Your Distance is 0 m.
+  m_Text: 'Level 17 solved. Your Distance is 0 m.
+
+    You recieved 0 points. Your
+    total points are 0 points.'
 --- !u!222 &1127760960
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -2712,10 +2715,10 @@ RectTransform:
   m_Father: {fileID: 707106588}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.25667408, y: 0.1875106}
-  m_AnchorMax: {x: 0.75413483, y: 0.625}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_SizeDelta: {x: 398, y: 43}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1001 &1131158141
 PrefabInstance:
@@ -2937,7 +2940,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 25
+  m_fontSize: 23.55
   m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -3658,7 +3661,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.071, y: 0.71374536}
   m_AnchorMax: {x: 0.24437982, y: 0.94833666}
-  m_AnchoredPosition: {x: 22.5857, y: -1.4127}
+  m_AnchoredPosition: {x: 22.585693, y: -1.4126987}
   m_SizeDelta: {x: 44.6775, y: 1.5063}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1683947385
@@ -4605,7 +4608,7 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 37.7
+  m_fontSize: 34.1
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
