@@ -2319,6 +2319,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2091590483843553628, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
+      propertyPath: m_Materials.Array.data[4]
+      value: 
+      objectReference: {fileID: 2100000, guid: 9b96407bc2189754c904bd7c3b346d57, type: 2}
     - target: {fileID: 2294368500450952171, guid: 5f491f1159b3f194bb9aec8b87ba1bf0, type: 3}
       propertyPath: e
       value: 2
@@ -3892,8 +3896,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.071, y: 0.71374536}
   m_AnchorMax: {x: 0.24437982, y: 0.94833666}
-  m_AnchoredPosition: {x: 0.38555908, y: -0.32976913}
-  m_SizeDelta: {x: 0.2773018, y: -0.6595497}
+  m_AnchoredPosition: {x: 19.5174, y: -1.5932}
+  m_SizeDelta: {x: 38.5409, y: 1.8673}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1683947385
 MonoBehaviour:
