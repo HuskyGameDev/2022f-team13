@@ -1,5 +1,5 @@
 # File units = meters
-mtllib Car.mtl
+mtllib Car Car.mtl
 g Part 1
 v 0.0139883 -0.00478376 0.001 
 v 0.0139532 -0.00457006 0.001 
