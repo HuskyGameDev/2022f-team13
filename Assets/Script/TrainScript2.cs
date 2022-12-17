@@ -170,7 +170,7 @@ namespace PathCreation.Examples
                     train_speed = Mathf.Clamp(-tot_dist * smooth, -speed, speed);
                 } else if (GameObject.ReferenceEquals(pathGen.path_f, temp)) 
                 {
-
+                    Debug.Log("Here");
                     float tot_dist = distanceTravelled;
                     PathCreator path_sc = pathGen.path_f.GetComponent<PathCreator>();
                     if (Vector3.Distance(path_sc.path.GetPoint(0), pathCreator.path.GetPoint(0)) == 0)//The next path starts at start
@@ -186,10 +186,12 @@ namespace PathCreation.Examples
                     train_speed = Mathf.Clamp(tot_dist * smooth, -speed, speed);
                 } else if (GameObject.ReferenceEquals(pathGen.path_s, ClosestPathConnection(temp)))
                 {
+                    Debug.Log("There");
                     train_speed = -speed;
                 } else if (GameObject.ReferenceEquals(pathGen.path_f, ClosestPathConnection(temp)))
                 {
-                    train_speed = speed;
+                    Debug.Log("There 2");
+                    train_speed = -speed;
                 } else
                 {
                     Debug.Log("How did we get here?");
