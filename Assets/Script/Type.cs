@@ -17,6 +17,12 @@ public class Type : MonoBehaviour
     public GameObject Cash;
     public GameObject Gold;
 
+    GameObject temp;
+    GameObject temp2 = null;
+    Vector3 position;
+    Quaternion rotation;
+    Vector3 scale;
+
     public enum element//only add types to the bottom or all the types on the game will get messed up
     {
         Train,
@@ -36,19 +42,12 @@ public class Type : MonoBehaviour
         Cash,
         Green,
         Gold,
-
-    
-        
-
     };
     public element e;
+    element preve;
     // Start is called before the first frame update
     void Start()
     {
-        GameObject temp;
-        Vector3 position;
-        Quaternion rotation;
-        Vector3 scale;
         //Set the location for each object 
         if (gameObject.CompareTag("Train"))
         {
@@ -86,7 +85,29 @@ public class Type : MonoBehaviour
 
         //Spawn the train icon in the center of each object
         //Declare a model object that will be adjusted here
-        GameObject temp2 = null;
+
+        changeValue();
+
+
+
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        //Check if the value has changed
+        if (e != preve)
+        {
+            Destroy(temp2);
+            changeValue();
+            
+        }
+
+        preve = e;
+    }
+
+    void changeValue()
+    {
         switch (e)
         {
             case element.Train:
@@ -143,14 +164,5 @@ public class Type : MonoBehaviour
             temp2.transform.localPosition = position;
             temp2.transform.localScale = scale;
         }
-        
-
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
     }
 }
