@@ -29,6 +29,7 @@ namespace FluffyUnderware.Curvy
         protected override void Update()
         {
             seen = false;
+            //rb.isKinematic = false;
             if (rb == null)
             {
                 rb = gameObject.GetComponent<Rigidbody>();
@@ -40,6 +41,7 @@ namespace FluffyUnderware.Curvy
                 if (hover && Input.GetMouseButtonDown(0))
                 {
                     held = true;
+                    rb.isKinematic = true;
                 }
 
                 if (!Input.GetMouseButton(0))
@@ -47,6 +49,10 @@ namespace FluffyUnderware.Curvy
                     held = false;
                     Speed = 0;
                     UpdateSpeeds();
+                    if (front == null && back == null)
+                    {
+                        rb.isKinematic = false;
+                    }
                 }
 
                 if (held)
@@ -62,8 +68,14 @@ namespace FluffyUnderware.Curvy
                 }
             } else
             {
-
+                if (front == null && back == null)
+                {
+                    rb.isKinematic = false;
+                }
             }
+
+            //Handle The Possbility of disconnection
+            
 
             base.Update();
 
@@ -132,6 +144,8 @@ namespace FluffyUnderware.Curvy
                 back.UpdateSpeeds();
             }
         }
+
+
     }
 
 }
